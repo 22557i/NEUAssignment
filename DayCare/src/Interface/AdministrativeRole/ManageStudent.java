@@ -329,13 +329,13 @@ public class ManageStudent extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSortActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-      int rowCount = studentTable.getRowCount();
+        int rowCount = studentTable.getRowCount();
         DefaultTableModel model = (DefaultTableModel)studentTable.getModel();
         for(int i = rowCount - 1; i >=0; i--) {
             model.removeRow(i);
         }
         for(Student s : studentList.getStudentList()) {
-            if(s.toString().toUpperCase().contains(txtSearch.getText())||s.toString().toLowerCase().contains(txtSearch.getText())){
+            if(s.toString().toLowerCase().contains(txtSearch.getText().toLowerCase())){
             Object row[] = new Object[5];
             row[0] = s;
             row[1] = s.getAge();

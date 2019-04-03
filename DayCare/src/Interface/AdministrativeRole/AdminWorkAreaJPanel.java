@@ -28,8 +28,8 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     DataReader TeacherReader;
     String[] StudentRow;
     String[] TeacherRow;
-    public final String STUDENT_CSV_PATH ="./StudentCSV.csv";
-    public final String TEACHER_CSV_PATH = "./TeacherCSV.csv";
+    public  String STUDENT_CSV_PATH ="./StudentCSV.csv";
+    public  String TEACHER_CSV_PATH = "./TeacherCSV.csv";
     /**
      * Creates new form AdminWorkAreaJPanel
      */

@@ -2,6 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/Users/mr.wu/NetBeansProjects/DayCare/src/Interface/StudentRole/CreateNewImmunizationJPanel.java</file>
+            <file>file:/Users/mr.wu/NetBeansProjects/DayCare/src/Interface/AdministrativeRole/ManageStudent.java</file>
+            <file>file:/Users/mr.wu/NetBeansProjects/DayCare/src/Interface/AdministrativeRole/AddTeacher.java</file>
+            <file>file:/Users/mr.wu/NetBeansProjects/DayCare/src/UserInterface/MainJFrame.java</file>
+            <file>file:/Users/mr.wu/NetBeansProjects/DayCare/src/Interface/StudentRole/StudentWorkAreaJPanel.java</file>
+            <file>file:/Users/mr.wu/NetBeansProjects/DayCare/src/Interface/AdministrativeRole/AddStudent.java</file>
+            <file>file:/Users/mr.wu/NetBeansProjects/DayCare/src/Interface/StudentRole/ManageImmunizationListJPanel.java</file>
+            <file>file:/Users/mr.wu/NetBeansProjects/DayCare/src/Interface/StudentRole/LoginStudent.java</file>
+        </group>
     </open-files>
 </project-private>

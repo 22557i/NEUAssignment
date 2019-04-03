@@ -5,6 +5,7 @@
  */
 package UserInterface;
 
+import Business.DataReader;
 import Business.StudentList;
 import Business.TeacherList;
 import Interface.AdministrativeRole.AdminWorkAreaJPanel;
@@ -24,10 +25,30 @@ import javax.swing.JOptionPane;
  * @author Hui Huang
  */
 public class MainJFrame extends javax.swing.JFrame {
-private StudentList studentList;
-private TeacherList teacherList;
-private String StudentCSVPath;
-private String TeacherCSVPath;
+    private StudentList studentList;
+    private TeacherList teacherList;
+    public String StudentCSVPath="./StudentCSV.csv";
+    public String TeacherCSVPath="./TeacherCSV.csv";
+    DataReader StudentReader;
+    DataReader TeacherReader;
+    String[] StudentRow;
+
+    public String getStudentCSVPath() {
+        return StudentCSVPath;
+    }
+
+    public void setStudentCSVPath(String StudentCSVPath) {
+        this.StudentCSVPath = StudentCSVPath;
+    }
+
+    public String getTeacherCSVPath() {
+        return TeacherCSVPath;
+    }
+
+    public void setTeacherCSVPath(String TeacherCSVPath) {
+        this.TeacherCSVPath = TeacherCSVPath;
+    }
+    String[] TeacherRow;
 
     /**
      * Creates new form MainJFrame
@@ -145,7 +166,9 @@ private String TeacherCSVPath;
     private void btnAdministrativeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministrativeActionPerformed
    
     try {
-        // TODO add your handling code here:
+        
+// TODO add your handling code here:
+       
         AdminWorkAreaJPanel awajp = new AdminWorkAreaJPanel(userProcessContainer, studentList, teacherList,StudentCSVPath,TeacherCSVPath);
         userProcessContainer.add("AdminWordAreaJPanel",awajp);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
@@ -157,11 +180,15 @@ private String TeacherCSVPath;
     }//GEN-LAST:event_btnAdministrativeActionPerformed
 
     private void btnStudentManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudentManagerActionPerformed
-        // TODO add your handling code here:
-        LoginStudent lp = new LoginStudent(userProcessContainer, studentList);
-        userProcessContainer.add("LoginStudentJPanel",lp);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+        try {
+            // TODO add your handling code here:
+            LoginStudent lp = new LoginStudent(userProcessContainer, studentList,StudentCSVPath,TeacherCSVPath);
+            userProcessContainer.add("LoginStudentJPanel",lp);
+            CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        } catch (IOException ex) {
+            Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnStudentManagerActionPerformed
 
     private void btnStudentCSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudentCSVActionPerformed
@@ -172,7 +199,8 @@ private String TeacherCSVPath;
         CSVChooser.showDialog(new JLabel(), "choose");  
         
         File a=CSVChooser.getSelectedFile(); 
-        System.out.println(StudentCSVPath=a.getAbsolutePath());
+        setStudentCSVPath(a.getAbsolutePath());
+        System.out.println(StudentCSVPath);
         JOptionPane.showMessageDialog(null,"Browse the StudentCSV Successfully ");
     }//GEN-LAST:event_btnStudentCSVActionPerformed
 
@@ -183,7 +211,8 @@ private String TeacherCSVPath;
         CSVChooser.showDialog(new JLabel(), "choose");  
         
         File a=CSVChooser.getSelectedFile(); 
-        System.out.println(TeacherCSVPath=a.getAbsolutePath());
+        setTeacherCSVPath(a.getAbsolutePath());
+        System.out.println(TeacherCSVPath);
         JOptionPane.showMessageDialog(null,"Browse the TeacherCSV Successfully ");
     }//GEN-LAST:event_btnTeacherCSVActionPerformed
 

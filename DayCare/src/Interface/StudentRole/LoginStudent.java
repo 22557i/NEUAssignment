@@ -5,10 +5,15 @@
  */
 package Interface.StudentRole;
 
+import Business.DataReader;
+import Business.Immunization;
 import Business.Student;
 import Business.StudentList;
+import Business.Teacher;
 import javax.swing.JPanel;
 import java.awt.CardLayout;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  *
@@ -18,14 +23,43 @@ public class LoginStudent extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
     private StudentList studentList;
-    
+    public String StudentCSVPath;
+    public String TeacherCSVPath;
+    DataReader StudentReader;
+    DataReader TeacherReader;
+    String[] StudentRow;
+    String[] TeacherRow;
     /**
      * Creates new form LoginStudent
      */
-    public LoginStudent(JPanel userProcessContainer,StudentList studentList) {
+    public LoginStudent(JPanel userProcessContainer,StudentList studentList,String StudentCSVPath , String TeacherCSVPath) throws FileNotFoundException, IOException {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.studentList=studentList;
+        this.StudentCSVPath = StudentCSVPath;
+        //this.TeacherCSVPath = TeacherCSVPath;
+        
+        StudentReader = new DataReader(StudentCSVPath);
+        //TeacherReader = new DataReader(TeacherCSVPath);
+        
+        while((StudentRow = StudentReader.getNextRow()) != null){
+            
+          Student student = new Student();
+          student.setAge(Integer.valueOf(StudentRow[1]));
+          student.setParentsName(StudentRow[2]);
+          student.setName(StudentRow[0]);
+          student.setRegistrationDate(StudentRow[3]);
+          for(int i =0;4*i+7<StudentRow.length;i++){
+          Immunization imu = new Immunization();
+          if(!StudentRow[4*i+4].equals(""))imu.setImmunizationName(StudentRow[4*i+4]);
+          if(!StudentRow[4*i+5].equals(""))imu.setType(StudentRow[4*i+5]);
+          if(!StudentRow[4*i+6].equals(""))imu.setPeriod(StudentRow[4*i+6]);
+          if(!StudentRow[4*i+7].equals(""))imu.setTime(StudentRow[4*i+7]);
+          student.getImmunizationList().getImmunizationList().add(imu);
+          }
+          this.studentList.getStudentList().add(student);
+    }
+        
         supplierComboBox1.removeAllItems();
         for(Student student : studentList.getStudentList()) {
         supplierComboBox1.addItem(student);

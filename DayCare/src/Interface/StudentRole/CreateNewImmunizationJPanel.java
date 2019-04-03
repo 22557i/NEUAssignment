@@ -144,10 +144,12 @@ public class CreateNewImmunizationJPanel extends javax.swing.JPanel {
 
     private void backButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButton1ActionPerformed
         // TODO add your handling code here:
-       // backAction();
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
+       // 
+        //userProcessContainer.remove(this);
+       // userProcessContainer.remove(this);
+        backAction();
+        //CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        //layout.previous(userProcessContainer);
     }//GEN-LAST:event_backButton1ActionPerformed
     private void backAction() {
          ManageImmunizationListJPanel mpcjp = new ManageImmunizationListJPanel(userProcessContainer, student);
@@ -157,7 +159,7 @@ public class CreateNewImmunizationJPanel extends javax.swing.JPanel {
     }
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
         // TODO add your handling code here:
-        if(!txtPeriod.equals("")&&!txtTime.equals("")&&!txtType.equals("")&&!txtImmunization.equals("")){
+        if(!txtPeriod.getText().equals("")&&!txtTime.getText().equals("")&&!txtType.getText().equals("")&&!txtImmunization.getText().equals("")){
         Immunization immunization = new Immunization();
         immunization.setImmunizationName(txtImmunization.getText());
         immunization.setTime(txtTime.getText());
