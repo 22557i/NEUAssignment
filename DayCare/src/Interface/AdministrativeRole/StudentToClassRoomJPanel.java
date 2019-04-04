@@ -7,7 +7,9 @@ package Interface.AdministrativeRole;
 
 import Business.Classroom;
 import Business.Group;
+import Business.SortByAge;
 import Business.SortByGroupID;
+import Business.SortByName;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import Business.Student;
@@ -16,6 +18,7 @@ import Business.Teacher;
 import Business.TeacherList;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Stack;
 import javax.swing.table.DefaultTableModel;
 
@@ -51,17 +54,20 @@ public class StudentToClassRoomJPanel extends javax.swing.JPanel {
         StudentListtbl = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        btnAge = new javax.swing.JButton();
+        btnGroup = new javax.swing.JButton();
+        btnName = new javax.swing.JButton();
 
         StudentListtbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Student Name", "Group Number", "Teacher Name", "Parent Name", "Classromm Number"
+                "Student Name", "Age(Month)", "Group Number", "Teacher Name", "Parent Name", "Classromm Number"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -81,6 +87,27 @@ public class StudentToClassRoomJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnAge.setText("Age");
+        btnAge.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgeActionPerformed(evt);
+            }
+        });
+
+        btnGroup.setText("Group");
+        btnGroup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGroupActionPerformed(evt);
+            }
+        });
+
+        btnName.setText("Name");
+        btnName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNameActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -88,12 +115,18 @@ public class StudentToClassRoomJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 723, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 723, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnAge, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnName, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+                            .addComponent(btnGroup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addGap(120, 120, 120)
+                        .addGap(190, 190, 190)
                         .addComponent(jLabel1)))
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,8 +136,16 @@ public class StudentToClassRoomJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(btnAge)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnName)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnGroup)))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -114,6 +155,24 @@ public class StudentToClassRoomJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgeActionPerformed
+        // TODO add your handling code here:
+        SortByAge s = new SortByAge();
+        populatable(s);
+    }//GEN-LAST:event_btnAgeActionPerformed
+
+    private void btnNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNameActionPerformed
+        // TODO add your handling code here:
+        SortByName s = new SortByName();
+        populatable(s);
+    }//GEN-LAST:event_btnNameActionPerformed
+
+    private void btnGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGroupActionPerformed
+        // TODO add your handling code here:
+        SortByGroupID s = new SortByGroupID();
+        populatable(s);
+    }//GEN-LAST:event_btnGroupActionPerformed
 
  private int AssignStudnetToTeacher(int ratio,ArrayList<Student>arrayList,int countNO, Stack<Teacher> stack){
         int size =(arrayList.size()%ratio==0)?arrayList.size()/ratio:arrayList.size()/ratio+1;
@@ -194,24 +253,100 @@ public class StudentToClassRoomJPanel extends javax.swing.JPanel {
          Collections.sort(studentlist.getStudentList(),sbgid);
          DefaultTableModel dtm =(DefaultTableModel)StudentListtbl.getModel();
          dtm.setRowCount(0);
+         SortByAge s = new SortByAge();
+         Collections.sort(studentlist.getStudentList(), s);
          for(Student p1:studentlist.getStudentList()){
-            Object row[] = new Object[5];
+            Object row[] = new Object[6];
             row[0] = p1;
+            row[1] = p1.getAge();
              try {
-                 row[1] = p1.getGroupincluing().getGroupID();
+                 row[2] = p1.getGroupincluing().getGroupID();
              } catch (Exception e) {
-                 row[1] = new String("Error");
+                 row[2] = new String("Error");
              }
-            row[2] = p1.getGroupincluing().getTeacherincharge().getName();
-            row[3] = p1.getParentsName();
-            if(p1.getAge()<48)row[4]=Integer.valueOf((p1.getGroupincluing().getGroupID()))/3+1;
-           else row[4] =(Integer.valueOf((p1.getGroupincluing().getGroupID()))-27)/2+11;
+            row[3] = p1.getGroupincluing().getTeacherincharge().getName();
+            row[4] = p1.getParentsName();
+            if(p1.getAge()<48)row[5]=Integer.valueOf((p1.getGroupincluing().getGroupID()))/3+1;
+           else row[5] =(Integer.valueOf((p1.getGroupincluing().getGroupID()))-27)/2+11;
+            dtm.addRow(row);
+ }
+   
+    }
+    private void populatable(Comparator<Student> sComparator){
+        ArrayList <Student> arrayList6_12 = new ArrayList <Student> ();
+        ArrayList <Student> arrayList12_24 = new ArrayList <Student> ();
+        ArrayList <Student> arrayList24_36 = new ArrayList <Student> ();
+        ArrayList <Student>  arrayList36_48 = new ArrayList <Student> ();
+        ArrayList <Student>  arrayList48_60 = new ArrayList <Student> ();
+        ArrayList <Student>  arrayList60plus = new ArrayList <Student> ();
+        ArrayList <Classroom> classroomsDirectory = new ArrayList<Classroom>();
+        Stack<Teacher> teacherstack = new Stack<Teacher>();
+        for(Teacher t : teacherList.getTeacherList()){
+            teacherstack.push(t);
+        }
+        for(Student s :studentlist.getStudentList()){
+            
+            if(s.getAge()>=6&&s.getAge()<=12){
+                arrayList6_12.add(s);
+            }
+            if (s.getAge()>12&&s.getAge()<=24) {
+                arrayList12_24.add(s);
+            }
+            if (s.getAge()>24&&s.getAge()<=36) {
+                arrayList24_36.add(s);
+            }
+            if (s.getAge()>36&&s.getAge()<=48) {
+                arrayList36_48.add(s);
+            }
+            if(s.getAge()>48&&s.getAge()<=60){
+                arrayList60plus.add(s);
+            }
+            if(s.getAge()>60){
+                arrayList60plus.add(s);
+            }
+        }
+         int countNO =1;
+         countNO = AssignStudnetToTeacher(4, arrayList6_12, countNO,teacherstack);
+         countNO = AssignStudnetToTeacher(5, arrayList12_24, countNO,teacherstack);
+         countNO = AssignStudnetToTeacher(6, arrayList24_36, countNO,teacherstack);
+         countNO = AssignStudnetToTeacher(8, arrayList36_48, countNO,teacherstack);
+         countNO = AssignStudnetToTeacher(12, arrayList48_60, countNO,teacherstack);
+         countNO = AssignStudnetToTeacher(15, arrayList60plus, countNO,teacherstack);
+         int roomcount=1;
+         AssignStudentToClassroom(arrayList6_12, classroomsDirectory, 3, roomcount);
+         AssignStudentToClassroom(arrayList12_24, classroomsDirectory, 3, roomcount);
+         AssignStudentToClassroom(arrayList24_36, classroomsDirectory, 3, roomcount);
+         AssignStudentToClassroom(arrayList36_48, classroomsDirectory, 3, roomcount);
+         AssignStudentToClassroom(arrayList48_60, classroomsDirectory, 2, roomcount);
+         AssignStudentToClassroom(arrayList60plus, classroomsDirectory, 2, roomcount);
+         
+         Collections.sort(studentlist.getStudentList(),sComparator);
+         DefaultTableModel dtm =(DefaultTableModel)StudentListtbl.getModel();
+         dtm.setRowCount(0);
+         SortByAge s = new SortByAge();
+         Collections.sort(studentlist.getStudentList(), s);
+         for(Student p1:studentlist.getStudentList()){
+            Object row[] = new Object[6];
+            row[0] = p1;
+            row[1] = p1.getAge();
+             try {
+                 row[2] = p1.getGroupincluing().getGroupID();
+             } catch (Exception e) {
+                 row[2] = new String("Error");
+             }
+            row[3] = p1.getGroupincluing().getTeacherincharge().getName();
+            row[4] = p1.getParentsName();
+            if(p1.getAge()<48)row[5]=Integer.valueOf((p1.getGroupincluing().getGroupID()))/3+1;
+           else row[5] =(Integer.valueOf((p1.getGroupincluing().getGroupID()))-27)/2+11;
             dtm.addRow(row);
  }
    
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable StudentListtbl;
+    private javax.swing.JButton btnAge;
+    private javax.swing.JButton btnGroup;
+    private javax.swing.JButton btnName;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
