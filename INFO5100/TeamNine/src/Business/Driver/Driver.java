@@ -5,42 +5,79 @@
  */
 package Business.Driver;
 
+import Business.WorkQueue.DriveRequest;
+import java.awt.List;
+
 /**
  *
  * @author mr.wu
  */
 public class Driver {
-    private String Name;
-    private int Age;
+    private String username;
+    private String name;
+    private String address;
+    private String phone;
+    private String email;
     private DriverLicense driverLicense;
     private Car vehicle;
     
+    
+   
     public Driver(){
         
     }
     
-    public Driver(String Name, int Age, DriverLicense driverLicense, Car vehicle) {
-        this.Name = Name;
-        this.Age = Age;
+    public Driver(String username, String name, String address, String phone, String email, DriverLicense driverLicense, Car vehicle) {
+        this.username = username;
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
+        this.email = email;
         this.driverLicense = driverLicense;
         this.vehicle = vehicle;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getName() {
-        return Name;
+        return name;
     }
 
-    public void setName(String Name) {
-        this.Name = Name;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getAge() {
-        return Age;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAge(int Age) {
-        this.Age = Age;
+    public void setAddress(String address) {
+        this.address = address;
     }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    
 
     public DriverLicense getDriverLicense() {
         return driverLicense;
@@ -57,6 +94,8 @@ public class Driver {
     public void setVehicle(Car vehicle) {
         this.vehicle = vehicle;
     }
+
+   
     
     
 }

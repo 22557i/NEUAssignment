@@ -380,7 +380,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
 
-        String name = nameJTextField.getText();
+       // String name = nameJTextField.getText();
 
         //        Network network = system.createAndAddNetwork();
         //        network.setName(name);
@@ -472,3 +472,4 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField usernameJTextField;
     // End of variables declaration//GEN-END:variables
 }
+

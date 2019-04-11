@@ -5,8 +5,9 @@
  */
 package Business.Customer;
 
-import Business.Agency.Agency;
+
 import Business.Driver.Driver;
+import Business.Enterprise.Enterprise;
 
 /**
  *
@@ -15,26 +16,34 @@ import Business.Driver.Driver;
 public class Order {
 
     private String orderID;
-    private String orderDateString;
-    private String orderStatusString;
-    private Agency agency;
+    private String orderDate;
+    private String orderStatus;
+    private Enterprise enterprise;
     private Driver driver;
     private double distance;
     private double totalPrice;
-    private String appointTime;
-    private String startingLocation;
-    private String destinationLocation;
+    private String time;
+    private String location;
+    private String destination;
     public Order(){
         
     }
-    public Order(String orderID, String orderDateString, String orderStatusString, Driver driver, String appointTime, String startingLocation, String destinationLocation) {
+
+    public Enterprise getEnterprise() {
+        return enterprise;
+    }
+
+    public void setEnterprise(Enterprise enterprise) {
+        this.enterprise = enterprise;
+    }
+    public Order(String orderID, String orderDate, String orderStatus, Driver driver, String time, String location, String destination) {
         this.orderID = orderID;
-        this.orderDateString = orderDateString;
-        this.orderStatusString = orderStatusString;
+        this.orderDate = orderDate;
+        this.orderStatus = orderStatus;
         this.driver = driver;
-        this.appointTime = appointTime;
-        this.startingLocation = startingLocation;
-        this.destinationLocation = destinationLocation;
+        this.time = time;
+        this.location = location;
+        this.destination = destination;
     }
 
     public String getOrderID() {
@@ -45,30 +54,25 @@ public class Order {
         this.orderID = orderID;
     }
 
-    public String getOrderDateString() {
-        return orderDateString;
+    public String getOrderDate() {
+        return orderDate;
     }
 
-    public void setOrderDateString(String orderDateString) {
-        this.orderDateString = orderDateString;
+    public void setOrderDate(String orderDate) {
+        this.orderDate = orderDate;
     }
 
-    public String getOrderStatusString() {
-        return orderStatusString;
+    public String getOrderStatus() {
+        return orderStatus;
     }
 
-    public void setOrderStatusString(String orderStatusString) {
-        this.orderStatusString = orderStatusString;
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
-    public Agency getAgency() {
-        return agency;
-    }
+   
 
-    public void setAgency(Agency agency) {
-        this.agency = agency;
-    }
-
+  
     public Driver getDriver() {
         return driver;
     }
@@ -93,41 +97,43 @@ public class Order {
         this.totalPrice = totalPrice;
     }
 
-    public String getAppointTime() {
-        return appointTime;
+    public String getTime() {
+        return time;
     }
 
-    public void setAppointTime(String appointTime) {
-        this.appointTime = appointTime;
+    public void setTime(String time) {
+        this.time = time;
     }
 
-    public String getStartingLocation() {
-        return startingLocation;
+    public String getLocation() {
+        return location;
     }
 
-    public void setStartingLocation(String startingLocation) {
-        this.startingLocation = startingLocation;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
-    public String getDestinationLocation() {
-        return destinationLocation;
+    public String getDestination() {
+        return destination;
     }
 
-    public void setDestinationLocation(String destinationLocation) {
-        this.destinationLocation = destinationLocation;
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
-    public Order(String orderID, String orderDateString, String orderStatusString, Agency agency, Driver driver, double distance, double totalPrice, String appointTime, String startingLocation, String destinationLocation) {
+   
+
+    public Order(String orderID, String orderDate, String orderStatus, Enterprise enterprise, Driver driver, double distance, double totalPrice, String time, String location, String destination) {
         this.orderID = orderID;
-        this.orderDateString = orderDateString;
-        this.orderStatusString = orderStatusString;
-        this.agency = agency;
+        this.orderDate = orderDate;
+        this.orderStatus = orderStatus;
+        this.enterprise = enterprise;
         this.driver = driver;
         this.distance = distance;
         this.totalPrice = totalPrice;
-        this.appointTime = appointTime;
-        this.startingLocation = startingLocation;
-        this.destinationLocation = destinationLocation;
+        this.time = time;
+        this.location = location;
+        this.destination = destination;
     }
 
 }

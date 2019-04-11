@@ -6,7 +6,13 @@
 package UserInterface;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -14,7 +20,7 @@ import javax.swing.JPanel;
  * @author junxiang
  */
 public class LoginJPanel extends javax.swing.JPanel {
-private EcoSystem system;
+    private EcoSystem system;
     private JPanel leftPanel;
     private JFrame frame;
 
@@ -146,42 +152,42 @@ private EcoSystem system;
         String password = String.valueOf(passwordCharArray);
 
         // check whether if it is the system manager / Customer user account
-//        UserAccount account = system.getUserAccountDirectory().authenticateUser(userName, password);
-//
-//        Network inNetwork = null;
-//        Enterprise inEnterprise = null;
-//
-//        labelA:
-//        if (account == null) {
-//            for (Network net : system.getNetworkList()) {
-//                for (Enterprise en : net.getEnterpriseDirectory().getEnterpriseList()) {
-//                    account = en.getUserAccountDirectory().authenticateUser(userName, password);
-//                    if (account == null) {
-//                        for (Organization or : en.getOrganizationDirectory().getOrganizationList()) {
-//                            account = or.getUserAccountDirectory().authenticateUser(userName, password);
-//                            if (account != null) {
-//                                inNetwork = net;
-//                                inEnterprise = en;
-//                                break labelA;
-//                            }
-//                        }
-//                    } else {
-//                        inNetwork = net;
-//                        inEnterprise = en;
-//                        break labelA;
-//                    }
-//                }
-//            }
-//        }
-//
-//        if (account != null) {
-//            MainJFrame mFrame = new MainJFrame(this.system, account, inNetwork, inEnterprise);
-//            this.frame.dispose();
-//            mFrame.setLocationRelativeTo(null);
-//            mFrame.setVisible(true);
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Username/Password doesn't match our records.");
-//        }
+        UserAccount account = system.getUserAccountDirectory().authenticateUser(userName, password);
+
+        Network inNetwork = null;
+        Enterprise inEnterprise = null;
+
+        labelA:
+        if (account == null) {
+            for (Network net : system.getNetworkList()) {
+                for (Enterprise en : net.getEnterpriseDirectory().getEnterpriseList()) {
+                    account = en.getUserAccountDirectory().authenticateUser(userName, password);
+                    if (account == null) {
+                        for (Organization or : en.getOrganizationDirectory().getOrganizationList()) {
+                            account = or.getUserAccountDirectory().authenticateUser(userName, password);
+                            if (account != null) {
+                                inNetwork = net;
+                                inEnterprise = en;
+                                break labelA;
+                            }
+                        }
+                    } else {
+                        inNetwork = net;
+                        inEnterprise = en;
+                        break labelA;
+                    }
+                }
+            }
+        }
+
+        if (account != null) {
+            MainJFrame mFrame = new MainJFrame(this.system, account, inNetwork, inEnterprise);
+            this.frame.dispose();
+            mFrame.setLocationRelativeTo(null);
+            mFrame.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Username/Password doesn't match our records.");
+        }
     }//GEN-LAST:event_loginJButton1ActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
@@ -189,12 +195,12 @@ private EcoSystem system;
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-//        this.frame.setSize(250, 460);
-//        RegisterJPanel rp = new RegisterJPanel(this.system, this.leftPanel, this.frame);
-//        this.leftPanel.add("RegisterJPanel", rp);
-//        CardLayout layout = (CardLayout) this.leftPanel.getLayout();
-//        leftPanel.remove(this);
-//        layout.next(this.leftPanel);
+        this.frame.setSize(250, 460);
+        RegisterJPanel rp = new RegisterJPanel(this.system, this.leftPanel, this.frame);
+        this.leftPanel.add("RegisterJPanel", rp);
+        CardLayout layout = (CardLayout) this.leftPanel.getLayout();
+        leftPanel.remove(this);
+        layout.next(this.leftPanel);
     }//GEN-LAST:event_registerButtonActionPerformed
 
 

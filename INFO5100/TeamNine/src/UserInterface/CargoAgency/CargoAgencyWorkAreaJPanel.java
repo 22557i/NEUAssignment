@@ -5,17 +5,46 @@
  */
 package UserInterface.CargoAgency;
 
+import Business.EcoSystem;
+import Business.Employee.Employee;
+import Business.Enterprise.Enterprise;
+import Business.Role.Role;
+import Business.UserAccount.DriverAccount;
+import Business.UserAccount.EmployeeAccount;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.DeliveryRequest;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 /**
  *
  * @author junxiang
  */
 public class CargoAgencyWorkAreaJPanel extends javax.swing.JPanel {
-
+    private EcoSystem system;
+    private JPanel container;
+    private Enterprise en;
+    private EmployeeAccount account;
+    private JFrame frame;
+    private Role role;
+    
+    private Employee employee;
+    private DeliveryRequest selectedRequest = null;
     /**
      * Creates new form CargoAgencyWorkAreaJPanel
      */
-    public CargoAgencyWorkAreaJPanel() {
+    public CargoAgencyWorkAreaJPanel(EcoSystem system, JPanel container, Enterprise en, UserAccount userAccount, 
+            JFrame frame, Role role) {
         initComponents();
+        this.system = system;
+        this.container = container;
+        this.en = en;
+        this.account = (userAccount)userAccount;
+        this.frame = frame;
+        this.role = role;
+    }
+    public CargoAgencyWorkAreaJPanel(){
+        
     }
 
     /**
@@ -43,7 +72,7 @@ public class CargoAgencyWorkAreaJPanel extends javax.swing.JPanel {
         addressTextArea = new javax.swing.JTextArea();
         jScrollPane5 = new javax.swing.JScrollPane();
         descriptionTextArea = new javax.swing.JTextArea();
-        categoryComboBox = new javax.swing.JComboBox<RestaurantCategory>();
+        categoryComboBox = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
         employeePanel = new javax.swing.JPanel();
@@ -77,6 +106,15 @@ public class CargoAgencyWorkAreaJPanel extends javax.swing.JPanel {
         jLabel22 = new javax.swing.JLabel();
         currentRateTextField = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
+        passwordPanel = new javax.swing.JPanel();
+        passwordField1 = new javax.swing.JPasswordField();
+        passwordField2 = new javax.swing.JPasswordField();
+        cancelButton1 = new javax.swing.JButton();
+        passwordField = new javax.swing.JPasswordField();
+        submitButton = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
         profilePanel = new javax.swing.JPanel();
         roleTextField = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -93,15 +131,6 @@ public class CargoAgencyWorkAreaJPanel extends javax.swing.JPanel {
         jLabel16 = new javax.swing.JLabel();
         phoneTextField1 = new javax.swing.JTextField();
         usernameTextField = new javax.swing.JTextField();
-        passwordPanel = new javax.swing.JPanel();
-        passwordField1 = new javax.swing.JPasswordField();
-        passwordField2 = new javax.swing.JPasswordField();
-        cancelButton1 = new javax.swing.JButton();
-        passwordField = new javax.swing.JPasswordField();
-        submitButton = new javax.swing.JButton();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
 
         jTabbedPane3.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -579,6 +608,82 @@ public class CargoAgencyWorkAreaJPanel extends javax.swing.JPanel {
 
         jTabbedPane3.addTab("Reviews", reviewPanel);
 
+        cancelButton1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        cancelButton1.setText("Cancel");
+        cancelButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButton1ActionPerformed(evt);
+            }
+        });
+
+        submitButton.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        submitButton.setText("Submit");
+        submitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel15.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jLabel15.setText("Confirm Password:");
+
+        jLabel14.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jLabel14.setText("New Password:");
+
+        jLabel17.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jLabel17.setText("Old Password:");
+
+        javax.swing.GroupLayout passwordPanelLayout = new javax.swing.GroupLayout(passwordPanel);
+        passwordPanel.setLayout(passwordPanelLayout);
+        passwordPanelLayout.setHorizontalGroup(
+            passwordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(passwordPanelLayout.createSequentialGroup()
+                .addGap(257, 257, 257)
+                .addGroup(passwordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(passwordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(passwordPanelLayout.createSequentialGroup()
+                            .addComponent(jLabel14)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(passwordPanelLayout.createSequentialGroup()
+                            .addComponent(jLabel17)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(passwordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(passwordPanelLayout.createSequentialGroup()
+                            .addComponent(jLabel15)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(passwordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(passwordPanelLayout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cancelButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(283, Short.MAX_VALUE))
+        );
+        passwordPanelLayout.setVerticalGroup(
+            passwordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(passwordPanelLayout.createSequentialGroup()
+                .addGap(87, 87, 87)
+                .addGroup(passwordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(passwordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(passwordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(passwordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(passwordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addGroup(passwordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(submitButton)
+                    .addComponent(cancelButton1))
+                .addContainerGap(253, Short.MAX_VALUE))
+        );
+
+        jTabbedPane3.addTab("Change Password", passwordPanel);
+
         roleTextField.setEnabled(false);
 
         jLabel10.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
@@ -710,82 +815,6 @@ public class CargoAgencyWorkAreaJPanel extends javax.swing.JPanel {
 
         jTabbedPane3.addTab("My Profile", profilePanel);
 
-        cancelButton1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        cancelButton1.setText("Cancel");
-        cancelButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButton1ActionPerformed(evt);
-            }
-        });
-
-        submitButton.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        submitButton.setText("Submit");
-        submitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitButtonActionPerformed(evt);
-            }
-        });
-
-        jLabel15.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jLabel15.setText("Confirm Password:");
-
-        jLabel14.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jLabel14.setText("New Password:");
-
-        jLabel17.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jLabel17.setText("Old Password:");
-
-        javax.swing.GroupLayout passwordPanelLayout = new javax.swing.GroupLayout(passwordPanel);
-        passwordPanel.setLayout(passwordPanelLayout);
-        passwordPanelLayout.setHorizontalGroup(
-            passwordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(passwordPanelLayout.createSequentialGroup()
-                .addGap(257, 257, 257)
-                .addGroup(passwordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(passwordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(passwordPanelLayout.createSequentialGroup()
-                            .addComponent(jLabel14)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(passwordPanelLayout.createSequentialGroup()
-                            .addComponent(jLabel17)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(passwordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(passwordPanelLayout.createSequentialGroup()
-                            .addComponent(jLabel15)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(passwordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(passwordPanelLayout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(cancelButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(283, Short.MAX_VALUE))
-        );
-        passwordPanelLayout.setVerticalGroup(
-            passwordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(passwordPanelLayout.createSequentialGroup()
-                .addGap(87, 87, 87)
-                .addGroup(passwordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel17)
-                    .addComponent(passwordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(passwordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(passwordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(passwordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addGroup(passwordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(submitButton)
-                    .addComponent(cancelButton1))
-                .addContainerGap(253, Short.MAX_VALUE))
-        );
-
-        jTabbedPane3.addTab("Change Password", passwordPanel);
-
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel24.setText("My Work Area -Cargo Agency Manager Role");
 
@@ -814,14 +843,14 @@ public class CargoAgencyWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTabbedPane3StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane3StateChanged
-        int index = jTabbedPane1.getSelectedIndex();
+        int index = jTabbedPane3.getSelectedIndex();
         if (index != 0 && index != -1) {
-            setOverviewInfo();
-            setProfileInfo();
+            //setOverviewInfo();
+          //  setProfileInfo();
         }
-        setProfileFieldsEditable(false);
-        setOverviewFieldsEditable(false);
-        resetPasswordField();
+        //setProfileFieldsEditable(false);
+        //setOverviewFieldsEditable(false);
+        //resetPasswordField();
 
         uploadButton.setEnabled(false);
         saveButton.setEnabled(false);

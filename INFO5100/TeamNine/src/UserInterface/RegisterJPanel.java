@@ -6,7 +6,10 @@
 package UserInterface;
 
 import Business.EcoSystem;
+import Interface.CustomerRole.CustomerRegistrationInfoJPanel;
+import java.awt.CardLayout;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -161,20 +164,20 @@ private EcoSystem system;
         char[] passwordCharArray2 = passwordField1.getPassword();
         String password2 = String.valueOf(passwordCharArray2);
 
-//        if (system.isUserNameAvaliable(username)) {
-//            if (password1.equals(password2)) {
-//                this.frame.setSize(500, 430);
-//                CustomerRegistrationInfoJPanel cp = new CustomerRegistrationInfoJPanel(this.system, this.leftPanel, this.frame, username, password1);
-//                this.leftPanel.add("CustomerRegistrationInfoJPanel", cp);
-//                CardLayout layout = (CardLayout) this.leftPanel.getLayout();
-//                leftPanel.remove(this);
-//                layout.next(this.leftPanel);
-//            } else {
-//                JOptionPane.showMessageDialog(null, "Passwords don't match!");
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Username already exists!");
-//        }
+        if (system.isUserNameAvaliable(username)) {
+            if (password1.equals(password2)) {
+                this.frame.setSize(500, 430);
+                CustomerRegistrationInfoJPanel cp = new CustomerRegistrationInfoJPanel(this.system, this.leftPanel, this.frame, username, password1);
+                this.leftPanel.add("CustomerRegistrationInfoJPanel", cp);
+                CardLayout layout = (CardLayout) this.leftPanel.getLayout();
+                leftPanel.remove(this);
+                layout.next(this.leftPanel);
+            } else {
+                JOptionPane.showMessageDialog(null, "Passwords don't match!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Username already exists!");
+        }
     }//GEN-LAST:event_registerJButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
@@ -182,12 +185,12 @@ private EcoSystem system;
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
-//        this.frame.setSize(250, 430);
-//        LoginJPanel lp = new LoginJPanel(this.system, this.leftPanel, this.frame);
-//        this.leftPanel.add("RegisterJPanel", lp);
-//        CardLayout layout = (CardLayout) this.leftPanel.getLayout();
-//        leftPanel.remove(this);
-//        layout.next(this.leftPanel);
+        this.frame.setSize(250, 430);
+        LoginJPanel lp = new LoginJPanel(this.system, this.leftPanel, this.frame);
+      this.leftPanel.add("RegisterJPanel", lp);
+        CardLayout layout = (CardLayout) this.leftPanel.getLayout();
+        leftPanel.remove(this);
+        layout.next(this.leftPanel);
     }//GEN-LAST:event_LoginButtonActionPerformed
 
 

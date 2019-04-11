@@ -5,11 +5,11 @@
  */
 package Business.Network;
 
-import Business.Enterprise.DeliveryCompany.DeliveryCompany;
+
+import Business.Enterprise.CarGoAgency;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.EnterpriseDir;
-import Business.Enterprise.Restaurant.Restaurant;
-import Business.Enterprise.Store.Store;
+import Business.Enterprise.PickUpAgency;
 import java.util.ArrayList;
 
 /**
@@ -50,14 +50,22 @@ public class Network {
     public String getCity() {
         return this.city;
     }
+
     
-    public DeliveryCompany createDeliveryCompany(String name, String address, String phone) {
-        DeliveryCompany enter = new DeliveryCompany(name, address, phone);
+    public CarGoAgency createCarGoAgency(String name, String address, String phone) {
+        CarGoAgency enter = new CarGoAgency(name, address, phone);
         enter.createOrganizations();
         this.enterpriseDir.getEnterpriseList().add(enter);
         return enter;
     }
-    
+    public PickUpAgency createPickUpAgency(String name, String address, String phone) {
+        PickUpAgency enter = new PickUpAgency(name, address, phone);
+        enter.createOrganizations();
+        this.enterpriseDir.getEnterpriseList().add(enter);
+        return enter;
+}
+}
+    /*
     public Restaurant createRestaurant(String name, String address, String phone) {
         Restaurant res = new Restaurant(name, address, phone);
         res.createOrganizations();
@@ -125,3 +133,4 @@ public class Network {
 //        return result;
 //    }
 }
+*/

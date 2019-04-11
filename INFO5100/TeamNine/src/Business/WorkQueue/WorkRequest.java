@@ -24,11 +24,11 @@ public abstract class WorkRequest {
     public enum StatusEnum {
 
         Processing("Processing"),
-        Ready("Ready for pickup"),
-        WaitForPickup("Waiting for pickup"),
-        OnTheWay("On the way"),
+        Received("Received by Comapany"),
+        Accepted("Accepted by Driver"),
+        AtWork("At Work"),
         Cancelled("Cancelled"),
-        Completed("Completed");
+        Finished("Finished");
 
         private String value;
 

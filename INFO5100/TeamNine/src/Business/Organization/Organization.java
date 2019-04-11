@@ -26,8 +26,9 @@ public abstract class Organization {
     
     public enum Type {
 
-        Manager("Manager Organization"),
-        DeliveryMan("Delivery Man Organization");
+        CarGo("CarGo"),
+        PickUp("PickUp"),
+        Driver("Driver");
 
         private String value;
 

@@ -6,16 +6,10 @@
 package Business.Role;
 
 import Business.EcoSystem;
-import Business.Enterprise.DeliveryCompany.DeliveryCompany;
 import Business.Enterprise.Enterprise;
-import Business.Enterprise.Restaurant.Restaurant;
 import static Business.Enterprise.ShopModel.ShopType.Store;
-import Business.Enterprise.Store.Store;
 import Business.Network.Network;
 import Business.UserAccount.UserAccount;
-import UserInterface.DeliveryCompany.Manager.DeliveryCompanyManagerMainJPanel;
-import UserInterface.Restaurant.Manager.RestaurantManagerMainJPanel;
-import UserInterface.StoreManagerMainJPanel.StoreManagerMainJPanel;
 import java.awt.CardLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -37,7 +31,7 @@ public class ManagerRole extends Role {
 
     @Override
     public void createWorkArea(EcoSystem system, JPanel container, UserAccount userAccount, Network net, Enterprise en, JFrame frame) {
-        if (en instanceof Restaurant) {
+        /*if (en instanceof Restaurant) {
             RestaurantManagerMainJPanel cp = new RestaurantManagerMainJPanel(system, container, net, en, userAccount, frame, this);
             container.add(cp);
         }
@@ -48,8 +42,9 @@ public class ManagerRole extends Role {
         if (en instanceof Store) {
             StoreManagerMainJPanel cp = new StoreManagerMainJPanel(system, container, net, en, userAccount, frame, this);
             container.add(cp);
-        }
+        }*/
         CardLayout layout = (CardLayout) container.getLayout();
         layout.next(container);
     }
 }
+

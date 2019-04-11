@@ -7,7 +7,6 @@ package Business.Role;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.Enterprise.Restaurant.Restaurant;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Organization.Organization.Type;
@@ -26,7 +25,9 @@ public abstract class Role {
         Boss("Boss"),
         Manager("Manager"),
         Customer("Customer"),
-        DeliveryMan("Delivery Man"),
+        Driver("Driver"),
+        CarGoAgency("CarGo"),
+        PickUpAgnecy("PickUp"),
         SystemManager("System Manager");
         
         private String value;
@@ -39,11 +40,14 @@ public abstract class Role {
         }
         
         public Type getOrganizationType() {
-            if (this.value.equals(Manager.getValue())) {
-                return Type.Manager;
+            if (this.value.equals(CarGoAgency.getValue())) {
+                return Type.CarGo;
             }
-            if (this.value.equals(DeliveryMan.getValue())) {
-                return Type.DeliveryMan;
+             if (this.value.equals(PickUpAgnecy.getValue())) {
+                return Type.PickUp;
+            }
+            if (this.value.equals(Driver.getValue())) {
+                return Type.Driver;
             }
             else {
                 return null;

@@ -16,7 +16,8 @@ import java.util.ArrayList;
 
 /**
  *
- * @author ranranhe
+ * @author Harold WU
+ * 
  */
 public class EcoSystem extends Organization {
 

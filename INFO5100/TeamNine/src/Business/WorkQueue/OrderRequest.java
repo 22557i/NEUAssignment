@@ -6,10 +6,10 @@
 package Business.WorkQueue;
 
 import Business.Customer.Order;
-import Business.Enterprise.DeliveryCompany.DeliveryCompany;
 import Business.Enterprise.Enterprise;
 import Business.UserAccount.UserAccount;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -17,14 +17,21 @@ import java.util.ArrayList;
  */
 public class OrderRequest extends WorkRequest {
 
-    private String id;
+    private String orderID;
+    private Date orderDate;
     private StatusEnum status;
-    private String deliveryName;
-    private String deliveryAddress;
-    private String deliveryPhone;
-    private double amount;
-    private DeliveryCompany company;
-    private ArrayList<Order> dashes;
+    private String time;
+    private String location;
+    private String destination;
+    private String distance;
+    
+    private String customerName;
+    private String customerPhone;
+    private String remark;
+    
+  
+    
+    
     private ReviewRequest review;
 
     // generate order number
@@ -35,13 +42,103 @@ public class OrderRequest extends WorkRequest {
         return orderId;
     }
 
-    public OrderRequest(Enterprise enterprise, UserAccount account, ArrayList<ItemOrder> dashes) {
+    public OrderRequest(Enterprise enterprise, UserAccount account, ArrayList<Order> dashes) {
         super(enterprise, account);
-        this.dashes = dashes;
-        this.id = genId();
+       
         this.review = null;
     }
 
+    public String getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(String orderID) {
+        this.orderID = orderID;
+    }
+
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public StatusEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusEnum status) {
+        this.status = status;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getCustomerPhone() {
+        return customerPhone;
+    }
+
+    public void setCustomerPhone(String customerPhone) {
+        this.customerPhone = customerPhone;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+    public String getDistance() {
+        return distance;
+    }
+
+    public void setDistance(String distance) {
+        this.distance = distance;
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public enum ReviewStatus {
 
         NA("N/A"),
@@ -64,61 +161,8 @@ public class OrderRequest extends WorkRequest {
         }
     }
 
-    public String getId() {
-        return this.id;
-    }
-
-    public String getDeliveryName() {
-        return this.deliveryName;
-    }
-
-    public void setDeliveryName(String name) {
-        this.deliveryName = name;
-    }
-
-    public String getDeliveryAddress() {
-        return this.deliveryAddress;
-    }
-
-    public void setDeliveryAddress(String address) {
-        this.deliveryAddress = address;
-    }
-
-    public String getDeliveryPhone() {
-        return this.deliveryPhone;
-    }
-
-    public void setDeliveryPhone(String phone) {
-        this.deliveryPhone = phone;
-    }
-
-    public ArrayList<ItemOrder> getItems() {
-        return this.dashes;
-    }
-
-    public StatusEnum getStatus() {
-        return status;
-    }
-
-    public void setStatus(StatusEnum status) {
-        this.status = status;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-
-    public double getAmount() {
-        return this.amount;
-    }
-
-    public DeliveryCompany getCompany() {
-        return this.company;
-    }
-
-    public void setCompany(DeliveryCompany company) {
-        this.company = company;
-    }
+    
+   
 
     public boolean isReviewed() {
         if (this.review == null) {

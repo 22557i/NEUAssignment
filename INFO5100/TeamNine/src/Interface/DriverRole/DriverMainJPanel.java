@@ -5,6 +5,25 @@
  */
 package Interface.DriverRole;
 
+import Business.DB4OUtil.DB4OUtil;
+import Business.Driver.Driver;
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Enterprise.ShopModel;
+import Business.Role.Role;
+import Business.UserAccount.DriverAccount;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.DriveRequest;
+import Business.WorkQueue.OrderRequest;
+import Business.WorkQueue.ReviewRequest;
+import Business.WorkQueue.WorkRequest;
+import UserInterface.LoginJFrame;
+import java.util.ArrayList;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Hui Huang
@@ -14,8 +33,27 @@ public class DriverMainJPanel extends javax.swing.JPanel {
     /**
      * Creates new form DriverMainJPanel
      */
-    public DriverMainJPanel() {
+    private EcoSystem system;
+    private JPanel container;
+    private Enterprise enterprise;
+    private UserAccount driverAccount;
+    private Driver driver;
+    public JFrame frame;
+    private DriveRequest selectedRequest = null;
+    private Role role;
+    
+    public DriverMainJPanel(EcoSystem system, JPanel container, Enterprise enterprise, UserAccount userAccount,JFrame frame,Role role) {
         initComponents();
+        this.system = system;
+        this.container = container;
+        this.enterprise = enterprise;
+        this.driverAccount = userAccount;
+        this.frame = frame;
+        this.role = role;
+    }
+
+    public DriverMainJPanel() {
+    
     }
 
     /**
@@ -28,79 +66,603 @@ public class DriverMainJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        btnProfile = new javax.swing.JButton();
+        lblDriverName = new javax.swing.JLabel();
         btnLogout = new javax.swing.JButton();
-        btnNext = new javax.swing.JButton();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableDriveRequest = new javax.swing.JTable();
+        lblCustomerName = new javax.swing.JLabel();
+        lblCustomerPhone = new javax.swing.JLabel();
+        lblRemark = new javax.swing.JLabel();
+        txtCustomerName = new javax.swing.JTextField();
+        txtCustomerPhone = new javax.swing.JTextField();
+        txtRemark = new javax.swing.JTextField();
+        btnAccept = new javax.swing.JButton();
+        btnAtWork = new javax.swing.JButton();
+        btnFinished = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        lblName = new javax.swing.JLabel();
+        txtName = new javax.swing.JTextField();
+        lblUsername = new javax.swing.JLabel();
+        txtUsername = new javax.swing.JTextField();
+        lblAddress = new javax.swing.JLabel();
+        txtAddress = new javax.swing.JTextField();
+        lblPhone = new javax.swing.JLabel();
+        txtPhone = new javax.swing.JTextField();
+        lblEmail = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        btnSaveProfile = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        btnCurrent = new javax.swing.JLabel();
+        btnNew = new javax.swing.JLabel();
+        btnConfirm = new javax.swing.JLabel();
+        btnSavePassword = new javax.swing.JButton();
+        pfCurrent = new javax.swing.JPasswordField();
+        pfNew = new javax.swing.JPasswordField();
+        pfConfirm = new javax.swing.JPasswordField();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("SHOW Username");
-
-        btnProfile.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnProfile.setText("My profile");
+        lblDriverName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblDriverName.setText("<Driver Name>");
 
         btnLogout.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnLogout.setText("Log out");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
 
-        btnNext.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnNext.setText("Next >>");
+        jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane1StateChanged(evt);
+            }
+        });
+
+        tableDriveRequest.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Order ID", "Order Date", "Order Status", "Time", "Location", "Destination", "Distance", "Expected Pay"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tableDriveRequest);
+
+        lblCustomerName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblCustomerName.setText("Customer Name");
+
+        lblCustomerPhone.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblCustomerPhone.setText("Customer Phone");
+
+        lblRemark.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblRemark.setText("Remark");
+
+        txtCustomerName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCustomerNameActionPerformed(evt);
+            }
+        });
+
+        btnAccept.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnAccept.setText("Accept Request");
+        btnAccept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcceptActionPerformed(evt);
+            }
+        });
+
+        btnAtWork.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnAtWork.setText("At Work");
+        btnAtWork.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtWorkActionPerformed(evt);
+            }
+        });
+
+        btnFinished.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnFinished.setText("Finished");
+        btnFinished.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFinishedActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 980, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(93, 93, 93)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblRemark)
+                    .addComponent(lblCustomerPhone)
+                    .addComponent(lblCustomerName))
+                .addGap(43, 43, 43)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCustomerName, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                    .addComponent(txtCustomerPhone)
+                    .addComponent(txtRemark, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE))
+                .addGap(105, 105, 105)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnAccept, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAtWork, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFinished, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(119, 119, 119))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCustomerName)
+                    .addComponent(txtCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAccept))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCustomerPhone)
+                    .addComponent(txtCustomerPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAtWork))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblRemark)
+                    .addComponent(txtRemark, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFinished))
+                .addGap(113, 113, 113))
+        );
+
+        jTabbedPane1.addTab("Drive Request", jPanel4);
+
+        lblName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblName.setText("Name");
+
+        txtName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNameActionPerformed(evt);
+            }
+        });
+
+        lblUsername.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblUsername.setText("Username");
+
+        lblAddress.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblAddress.setText("Address");
+
+        txtAddress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAddressActionPerformed(evt);
+            }
+        });
+
+        lblPhone.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblPhone.setText("Phone");
+
+        lblEmail.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblEmail.setText("Email");
+
+        btnSaveProfile.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnSaveProfile.setText("Save");
+        btnSaveProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveProfileActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(166, 166, 166)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblName)
+                            .addComponent(lblUsername)
+                            .addComponent(lblAddress)
+                            .addComponent(lblPhone)
+                            .addComponent(lblEmail))
+                        .addGap(117, 117, 117)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtPhone, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtAddress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
+                            .addComponent(txtUsername, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEmail)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(311, 311, 311)
+                        .addComponent(btnSaveProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 202, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(73, 73, 73)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblUsername)
+                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblName)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(lblAddress)
+                        .addGap(56, 56, 56))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblPhone)
+                            .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblEmail)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(63, 63, 63)
+                .addComponent(btnSaveProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(140, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Driver Profile", jPanel2);
+
+        btnCurrent.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnCurrent.setText("Current Password");
+
+        btnNew.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnNew.setText("New Password");
+
+        btnConfirm.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnConfirm.setText("Confirm Password");
+
+        btnSavePassword.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnSavePassword.setText("Save");
+        btnSavePassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSavePasswordActionPerformed(evt);
+            }
+        });
+
+        pfCurrent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pfCurrentActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(210, 210, 210)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnNew)
+                            .addComponent(btnConfirm)
+                            .addComponent(btnCurrent))
+                        .addGap(192, 192, 192)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(pfNew, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                            .addComponent(pfCurrent)
+                            .addComponent(pfConfirm)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(419, 419, 419)
+                        .addComponent(btnSavePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(256, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(87, 87, 87)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCurrent)
+                    .addComponent(pfCurrent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNew)
+                    .addComponent(pfNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnConfirm)
+                    .addComponent(pfConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(59, 59, 59)
+                .addComponent(btnSavePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(196, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Change Password", jPanel3);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(117, 117, 117)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnNext, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 257, Short.MAX_VALUE)
-                .addComponent(btnLogout)
-                .addGap(98, 98, 98))
+                .addComponent(lblDriverName, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnLogout))
+            .addComponent(jTabbedPane1)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(51, 51, 51)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnProfile)
+                    .addComponent(lblDriverName, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLogout))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 346, Short.MAX_VALUE)
-                .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39))
+                .addGap(36, 36, 36)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(161, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 954, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 26, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 508, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void populateTableDriveRequest(ArrayList<WorkRequest> list) {
+        DefaultTableModel dtm = (DefaultTableModel) tableDriveRequest.getModel();
+        dtm.setRowCount(0);
+        for (WorkRequest wr : list) {
+            DriveRequest dr = (DriveRequest) wr;
+            Object row[] = new Object[8];
+            //order id
+            row[0] = dr.getOrderRequest().getOrderID(); 
+            //order date
+            row[1] = dr.getOrderRequest().getOrderDate(); 
+            //order status
+            row[2] = dr.getOrderRequest().getStatus();
+            //time
+            row[3] = dr.getOrderRequest().getTime();
+            //location
+            row[4] = dr.getOrderRequest().getLocation();
+            //destination
+            row[5] = dr.getOrderRequest().getDestination();   
+            //distance
+            row[6] = dr.getOrderRequest().getDistance();
+            //expected pay
+            //row[7] = 
+            dtm.addRow(row);
+        }
+    }
+    
+    private ArrayList<WorkRequest> getAllDriveRequest() {
+        ArrayList<WorkRequest> list = new ArrayList<>();
+        list.addAll(this.enterprise.getWorkQueue().getWorkRequestList());
+        list.addAll(this.driverAccount.getWorkQueue().getWorkRequestList());
+        return list;
+    }
+    
+    private void populateDetails(){
+        OrderRequest or = (OrderRequest) selectedRequest.getOrderRequest();
+        txtCustomerName.setText(or.getCustomerName());
+        txtCustomerPhone.setText(or.getCustomerPhone());
+        txtRemark.setText(or.getRemark());
+    }
+    
+    private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
+        int index = jTabbedPane1.getSelectedIndex();
+        /*if (index != 0 && index != -1) {
+            setInfo();
+        }*/
+      
+    }//GEN-LAST:event_jTabbedPane1StateChanged
+
+    private void setInfo() {
+        lblDriverName.setText(driver.getName());
+        
+        txtUsername.setText(driver.getUsername());
+        txtName.setText(driver.getName());
+        txtAddress.setText(driver.getAddress());
+        txtPhone.setText(driver.getPhone());
+        txtEmail.setText(driver.getEmail());
+    }
+    
+    private void resetPasswordField() {
+        pfCurrent.setText("");
+        pfNew.setText("");
+        pfConfirm.setText("");
+    }
+    
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameActionPerformed
+
+    private void txtAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAddressActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAddressActionPerformed
+
+    private void btnSavePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSavePasswordActionPerformed
+        // TODO add your handling code here:
+        char[] currentCharArray = pfCurrent.getPassword();
+        String currentPassword = String.valueOf(currentCharArray);
+        char[] newCharArray = pfNew.getPassword();
+        String newPassword = String.valueOf(newCharArray);
+        char[] confirmCharArray = pfConfirm.getPassword();
+        String confirmPassword = String.valueOf(confirmCharArray);
+        
+        if (currentPassword.equals(driverAccount.getPassword())) {
+            if (!newPassword.equals("")) {
+                if (newPassword.equals(confirmPassword)) {
+                    driverAccount.setPassword(newPassword);
+                    JOptionPane.showMessageDialog(null, "Password changed successfully!");
+                    DB4OUtil.getInstance().storeSystem(system);
+                    resetPasswordField();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Passwords don't match!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Password can't be empty!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Password is not correct!");
+        }
+    }//GEN-LAST:event_btnSavePasswordActionPerformed
+
+    
+    
+    private void pfCurrentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pfCurrentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pfCurrentActionPerformed
+
+    private void btnSaveProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveProfileActionPerformed
+        // TODO add your handling code here:
+        if (!txtName.getText().equals("") && !txtAddress.getText().equals("")
+                && !txtPhone.getText().equals("") && !txtEmail.getText().equals("")) {
+            this.driver.setName(txtName.getText());
+            this.driver.setAddress(txtAddress.getText());
+            this.driver.setPhone(txtPhone.getText());
+            this.driver.setEmail(txtEmail.getText());
+        } else {
+            JOptionPane.showMessageDialog(null, "Information can't be empty");
+            return;
+        }
+    }//GEN-LAST:event_btnSaveProfileActionPerformed
+
+    private void txtCustomerNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCustomerNameActionPerformed
+
+    private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
+        // TODO add your handling code here:
+        selectedRequest.setStatus(WorkRequest.StatusEnum.Accepted);
+        selectedRequest.setAccount(this.driverAccount);
+        selectedRequest.getOrderRequest().setStatus(WorkRequest.StatusEnum.Accepted);
+        system.getCustomerAccountByUsername(selectedRequest.getOrderRequest().getAccount().getUsername()).
+                getWorkQueue().getOderById(selectedRequest.getOrderRequest().getOrderID()).setStatus(WorkRequest.StatusEnum.Accepted);
+       
+        
+        system.getEnterpriseById(selectedRequest.getOrderRequest().getEnterprise().getId()).getWorkQueue().
+                getOderById(selectedRequest.getOrderRequest().getOrderID()).setStatus(WorkRequest.StatusEnum.Accepted);
+       
+        ShopModel model = (ShopModel)system.getEnterpriseById(selectedRequest.getOrderRequest().getEnterprise().getId());
+        
+        model.getWorkQueue().getOderById(selectedRequest.getOrderRequest().getOrderID()).setStatus(WorkRequest.StatusEnum.Accepted);
+        enterprise.getWorkQueue().getWorkRequestList().remove(selectedRequest);
+        this.driverAccount.getWorkQueue().getWorkRequestList().add(selectedRequest);
+        DB4OUtil.getInstance().storeSystem(system);
+        populateTableDriveRequest(getAllDriveRequest());
+        populateDetails();
+        btnAccept.setEnabled(false);
+        btnAtWork.setEnabled(true);
+        btnFinished.setEnabled(false);
+                
+    }//GEN-LAST:event_btnAcceptActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        // TODO add your handling code here:
+        LoginJFrame lf = new LoginJFrame();
+        this.frame.dispose();
+        lf.setLocationRelativeTo(null);
+        lf.setVisible(true);
+    }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnAtWorkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtWorkActionPerformed
+        // TODO add your handling code here:
+        selectedRequest.setStatus(WorkRequest.StatusEnum.AtWork);
+        selectedRequest.getOrderRequest().setStatus(WorkRequest.StatusEnum.AtWork);
+        system.getCustomerAccountByUsername(selectedRequest.getOrderRequest().getAccount().getUsername()).
+                getWorkQueue().getOderById(selectedRequest.getOrderRequest().getOrderID()).setStatus(WorkRequest.StatusEnum.AtWork);
+        system.getEnterpriseById(selectedRequest.getOrderRequest().getEnterprise().getId()).getWorkQueue().
+                getOderById(selectedRequest.getOrderRequest().getOrderID()).setStatus(WorkRequest.StatusEnum.AtWork);
+        DB4OUtil.getInstance().storeSystem(system);
+        populateTableDriveRequest(getAllDriveRequest());
+        populateDetails();
+        btnAccept.setEnabled(false);
+        btnAtWork.setEnabled(false);
+        btnFinished.setEnabled(true);
+    }//GEN-LAST:event_btnAtWorkActionPerformed
+
+    private void btnFinishedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinishedActionPerformed
+        // TODO add your handling code here:
+        selectedRequest.setStatus(WorkRequest.StatusEnum.Finished);
+        selectedRequest.getOrderRequest().setStatus(WorkRequest.StatusEnum.Finished);
+        
+        ReviewRequest rr = new ReviewRequest(selectedRequest.getEnterprise(), 
+                selectedRequest.getOrderRequest().getAccount());
+        system.getCustomerAccountByUsername(selectedRequest.getOrderRequest().getAccount().getUsername()).
+                getWorkQueue().getOderById(selectedRequest.getOrderRequest().getOrderID()).setStatus(WorkRequest.StatusEnum.Finished);
+        system.getEnterpriseById(selectedRequest.getOrderRequest().getEnterprise().getId()).getWorkQueue().
+                getOderById(selectedRequest.getOrderRequest().getOrderID()).setStatus(WorkRequest.StatusEnum.Finished);
+        system.getCustomerAccountByUsername(selectedRequest.getOrderRequest().getAccount().getUsername()).
+                getWorkQueue().getOderById(selectedRequest.getOrderRequest().getOrderID()).setReview(rr);
+        selectedRequest.getOrderRequest().setReview(rr);
+        DB4OUtil.getInstance().storeSystem(system);
+        populateTableDriveRequest(getAllDriveRequest());
+        populateDetails();
+        btnAccept.setEnabled(false);
+        btnAtWork.setEnabled(false);
+        btnFinished.setEnabled(false);
+    }//GEN-LAST:event_btnFinishedActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAccept;
+    private javax.swing.JButton btnAtWork;
+    private javax.swing.JLabel btnConfirm;
+    private javax.swing.JLabel btnCurrent;
+    private javax.swing.JButton btnFinished;
     private javax.swing.JButton btnLogout;
-    private javax.swing.JButton btnNext;
-    private javax.swing.JButton btnProfile;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel btnNew;
+    private javax.swing.JButton btnSavePassword;
+    private javax.swing.JButton btnSaveProfile;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lblAddress;
+    private javax.swing.JLabel lblCustomerName;
+    private javax.swing.JLabel lblCustomerPhone;
+    private javax.swing.JLabel lblDriverName;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblPhone;
+    private javax.swing.JLabel lblRemark;
+    private javax.swing.JLabel lblUsername;
+    private javax.swing.JPasswordField pfConfirm;
+    private javax.swing.JPasswordField pfCurrent;
+    private javax.swing.JPasswordField pfNew;
+    private javax.swing.JTable tableDriveRequest;
+    private javax.swing.JTextField txtAddress;
+    private javax.swing.JTextField txtCustomerName;
+    private javax.swing.JTextField txtCustomerPhone;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtPhone;
+    private javax.swing.JTextField txtRemark;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

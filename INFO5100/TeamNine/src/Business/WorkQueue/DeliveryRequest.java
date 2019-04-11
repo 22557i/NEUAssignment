@@ -54,7 +54,7 @@ public class DeliveryRequest extends WorkRequest {
     }
 
     public String getOrderId() {
-        return this.order.getId();
+        return this.order.getOrderID();
     }
 
     public OrderRequest getOrder() {

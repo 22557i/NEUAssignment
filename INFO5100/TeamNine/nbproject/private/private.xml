@@ -3,27 +3,22 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/mr.wu/NetBeansProjects/TeamNine/src/Interface/CustomerRole/CustomerMainJPanel.java</file>
-            <file>file:/Users/mr.wu/NetBeansProjects/TeamNine/src/Business/Employee/Employee.java</file>
-            <file>file:/Users/mr.wu/NetBeansProjects/TeamNine/src/Interface/CustomerRole/CustomerProfileJPanel.java</file>
-            <file>file:/Users/mr.wu/NetBeansProjects/TeamNine/src/Interface/CustomerRole/OrderDetail.java</file>
-            <file>file:/Users/mr.wu/NetBeansProjects/TeamNine/src/Interface/CustomerRole/CustomerPasswordJPanel.java</file>
-            <file>file:/Users/mr.wu/NetBeansProjects/TeamNine/src/Interface/CustomerRole/OrderConfirmationJPanel.java</file>
-            <file>file:/Users/mr.wu/NetBeansProjects/TeamNine/src/UserInterface/DriverRole/DriveRequestJPanel.java</file>
-            <file>file:/Users/mr.wu/NetBeansProjects/TeamNine/src/Business/Customer/Customer.java</file>
-            <file>file:/Users/mr.wu/NetBeansProjects/TeamNine/src/Business/UserAccount/EmployeeAccount.java</file>
-            <file>file:/Users/mr.wu/NetBeansProjects/TeamNine/src/UserInterface/CargoAgency/CargoAgencyWorkAreaJPanel.java</file>
-            <file>file:/Users/mr.wu/NetBeansProjects/TeamNine/src/UserInterface/LoginJPanel.java</file>
-            <file>file:/Users/mr.wu/NetBeansProjects/TeamNine/src/Business/Customer/Order.java</file>
-            <file>file:/Users/mr.wu/NetBeansProjects/TeamNine/src/Business/Customer/GoodsOrder.java</file>
-            <file>file:/Users/mr.wu/NetBeansProjects/TeamNine/src/UserInterface/DriverRole/DriverMainJPanel.java</file>
-            <file>file:/Users/mr.wu/NetBeansProjects/TeamNine/src/Business/Customer/PersonOrder.java</file>
-            <file>file:/Users/mr.wu/NetBeansProjects/TeamNine/src/UserInterface/EnterpriseAdministrator/EnterpriseAdminWorkAreaJPanel.java</file>
-            <file>file:/Users/mr.wu/NetBeansProjects/TeamNine/src/Interface/CustomerRole/ChooseAgency.java</file>
-            <file>file:/Users/mr.wu/NetBeansProjects/TeamNine/src/Business/Agency/Agency.java</file>
-            <file>file:/Users/mr.wu/NetBeansProjects/TeamNine/src/UserInterface/LoginJFrame.java</file>
-            <file>file:/Users/mr.wu/NetBeansProjects/TeamNine/src/Interface/CustomerRole/CustomerOrderHistoryJPanel.java</file>
-            <file>file:/Users/mr.wu/NetBeansProjects/TeamNine/src/Business/WorkQueue/OrderRequest.java</file>
+            <file>file:/Users/mr.wu/Desktop/TeamNine/src/UserInterface/MainJFrame.java</file>
+            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Interface/CustomerRole/PlaceOrderJPanel.java</file>
+            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Interface/CustomerRole/OrderDetail.java</file>
+            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Business/ConfigureASystem.java</file>
+            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Interface/CustomerRole/CustomerProfileJPanel.java</file>
+            <file>file:/Users/mr.wu/Desktop/TeamNine/src/UserInterface/SystemManager/CreateCustomerJFrame.java</file>
+            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Interface/CustomerRole/CustomerOrderHistoryJPanel.java</file>
+            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Interface/CustomerRole/ChooseAgency.java</file>
+            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Interface/DriverRole/DriverMainJPanel.java</file>
+            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Interface/CustomerRole/OrderConfirmationJPanel.java</file>
+            <file>file:/Users/mr.wu/Desktop/TeamNine/src/UserInterface/SystemAdministrator/SystemAdminJFrame.java</file>
+            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Interface/CustomerRole/CustomerRegistrationInfoJPanel.java</file>
+            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Business/UserAccount/UserAccount.java</file>
+            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Interface/CustomerRole/CustomerMainJPanel.java</file>
+            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Interface/CustomerRole/CustomerPasswordJPanel.java</file>
+            <file>file:/Users/mr.wu/Desktop/TeamNine/src/UserInterface/CargoAgency/CargoAgencyWorkAreaJPanel.java</file>
         </group>
     </open-files>
 </project-private>

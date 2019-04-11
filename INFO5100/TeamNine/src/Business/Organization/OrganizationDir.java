@@ -24,16 +24,16 @@ public class OrganizationDir {
     }
     
     public Organization getTypicalOrganization(Type type) {
-        if (type.equals(Type.DeliveryMan)) {
+        if (type.equals(Type.CarGo)) {
             for (Organization or:this.organizationList) {
-                if (or.getName().equalsIgnoreCase(Type.DeliveryMan.getValue())) {
+                if (or.getName().equalsIgnoreCase(Type.CarGo.getValue())) {
                     return or;
                 }
             }
         }
-        if (type.equals(Type.Manager)) {
+        if (type.equals(Type.PickUp)) {
             for (Organization or:this.organizationList) {
-                if (or.getName().equalsIgnoreCase(Type.Manager.getValue())) {
+                if (or.getName().equalsIgnoreCase(Type.PickUp.getValue())) {
                     return or;
                 }
             }

@@ -43,17 +43,7 @@ public class LoginJFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.CardLayout());
 
-        javax.swing.GroupLayout leftJPanelLayout = new javax.swing.GroupLayout(leftJPanel);
-        leftJPanel.setLayout(leftJPanelLayout);
-        leftJPanelLayout.setHorizontalGroup(
-            leftJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 498, Short.MAX_VALUE)
-        );
-        leftJPanelLayout.setVerticalGroup(
-            leftJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 442, Short.MAX_VALUE)
-        );
-
+        leftJPanel.setLayout(new java.awt.CardLayout());
         getContentPane().add(leftJPanel, "card2");
 
         pack();

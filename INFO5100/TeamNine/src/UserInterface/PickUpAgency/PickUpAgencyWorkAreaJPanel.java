@@ -5,6 +5,8 @@
  */
 package UserInterface.PickUpAgency;
 
+import java.awt.Image;
+import javax.swing.*;
 /**
  *
  * @author junxiang
