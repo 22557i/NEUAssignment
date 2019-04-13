@@ -25,13 +25,25 @@
                   <Component id="lblPhone" alignment="1" min="-2" max="-2" attributes="0"/>
                   <Component id="lblRemark" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="txtOrderID" max="32767" attributes="0"/>
-                  <Component id="txtOrderDate" max="32767" attributes="0"/>
-                  <Component id="txtCustomerName" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtPhone" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtRemark" alignment="0" pref="104" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
+                      <Component id="lblShowOrderDate" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblShowCustomerName" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblShowOrderID" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblShowRemark" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblShowPhone" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -47,32 +59,32 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblOrderID" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtOrderID" alignment="3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblOrderID" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblShowOrderID" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblOrderDate" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtOrderDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblShowOrderDate" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblCustomerName" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtCustomerName" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblShowCustomerName" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblPhone" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblShowPhone" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblPhone" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtPhone" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblRemark" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtRemark" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblShowRemark" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="96" max="32767" attributes="0"/>
+              <EmptySpace pref="99" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -94,8 +106,6 @@
         <Property name="text" type="java.lang.String" value="Order ID"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtOrderID">
-    </Component>
     <Component class="javax.swing.JLabel" name="lblOrderDate">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -103,8 +113,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Order Date"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtOrderDate">
     </Component>
     <Component class="javax.swing.JLabel" name="lblCustomerName">
       <Properties>
@@ -114,8 +122,6 @@
         <Property name="text" type="java.lang.String" value="Customer Name"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtCustomerName">
-    </Component>
     <Component class="javax.swing.JLabel" name="lblPhone">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -123,8 +129,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Phone"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtPhone">
     </Component>
     <Component class="javax.swing.JLabel" name="lblRemark">
       <Properties>
@@ -134,7 +138,30 @@
         <Property name="text" type="java.lang.String" value="Remark"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtRemark">
+    <Component class="javax.swing.JLabel" name="lblShowOrderID">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&lt;Order ID&gt;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblShowOrderDate">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&lt;Order Date&gt;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblShowCustomerName">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&lt;Customer Name&gt;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblShowPhone">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&lt;Phone&gt;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblShowRemark">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&lt;Remark&gt;"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

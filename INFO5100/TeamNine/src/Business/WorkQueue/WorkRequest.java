@@ -20,15 +20,24 @@ public abstract class WorkRequest {
     private UserAccount account;
     private Date requestDate;
     private Date resolveDate;
+    private String orderDate;
+    private String time;
+    private String location;
+    private String destination;
+    private String distance;
 
     public enum StatusEnum {
 
         Processing("Processing"),
-        Received("Received by Comapany"),
-        Accepted("Accepted by Driver"),
-        AtWork("At Work"),
+        Ready("Ready for pickup"),
+        WaitForPickup("Waiting for pickup"),
+        OnTheWay("On the way"),
         Cancelled("Cancelled"),
-        Finished("Finished");
+        Accepted("Accepted"),
+        AtWork("AtWork"),
+        Finished("Finished"),
+        Completed("Completed");
+        
 
         private String value;
 
@@ -92,6 +101,46 @@ public abstract class WorkRequest {
 
     public void setResolveDate(Date resolveDate) {
         this.resolveDate = resolveDate;
+    }
+
+    public String getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(String orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+    public String getDistance() {
+        return distance;
+    }
+
+    public void setDistance(String distance) {
+        this.distance = distance;
     }
 
     @Override

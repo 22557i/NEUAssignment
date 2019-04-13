@@ -13,6 +13,7 @@ import java.util.ArrayList;
  */
 public abstract class ShopModel extends Enterprise {
 
+   
     private String name;
     private String address;
     private String phone;
@@ -22,8 +23,8 @@ public abstract class ShopModel extends Enterprise {
 
     public enum ShopType {
 
-        Restaurant("Restaurant"),
-        Store("Store");
+        CargoDelivery("CargoDelivery"),
+        PickupService("PickupService");
 
         private String value;
 

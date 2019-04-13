@@ -6,6 +6,7 @@
 package Business.UserAccount;
 
 import Business.Customer.Customer;
+import Business.Driver.Driver;
 import Business.Employee.Employee;
 import Business.Role.Role;
 import java.util.ArrayList;
@@ -59,7 +60,11 @@ public class UserAccountDir {
         userAccountList.add(ua);
         return ua;
     }
-
+    public DriverAccount createDriverAccount(String username, String password, Driver driver){
+        DriverAccount ua = new DriverAccount(username, password, new Business.Role.Driver(), driver);
+        userAccountList.add(ua);
+        return ua;
+    }
     public void addAccount(UserAccount account) {
         userAccountList.add(account);
     }

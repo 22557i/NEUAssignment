@@ -438,7 +438,7 @@ public class DriverMainJPanel extends javax.swing.JPanel {
             DriveRequest dr = (DriveRequest) wr;
             Object row[] = new Object[8];
             //order id
-            row[0] = dr.getOrderRequest().getOrderID(); 
+            row[0] = dr.getOrderRequest().getId(); 
             //order date
             row[1] = dr.getOrderRequest().getOrderDate(); 
             //order status
@@ -560,15 +560,15 @@ public class DriverMainJPanel extends javax.swing.JPanel {
         selectedRequest.setAccount(this.driverAccount);
         selectedRequest.getOrderRequest().setStatus(WorkRequest.StatusEnum.Accepted);
         system.getCustomerAccountByUsername(selectedRequest.getOrderRequest().getAccount().getUsername()).
-                getWorkQueue().getOderById(selectedRequest.getOrderRequest().getOrderID()).setStatus(WorkRequest.StatusEnum.Accepted);
+                getWorkQueue().getOderById(selectedRequest.getOrderRequest().getId()).setStatus(WorkRequest.StatusEnum.Accepted);
        
         
         system.getEnterpriseById(selectedRequest.getOrderRequest().getEnterprise().getId()).getWorkQueue().
-                getOderById(selectedRequest.getOrderRequest().getOrderID()).setStatus(WorkRequest.StatusEnum.Accepted);
+                getOderById(selectedRequest.getOrderRequest().getId()).setStatus(WorkRequest.StatusEnum.Accepted);
        
         ShopModel model = (ShopModel)system.getEnterpriseById(selectedRequest.getOrderRequest().getEnterprise().getId());
         
-        model.getWorkQueue().getOderById(selectedRequest.getOrderRequest().getOrderID()).setStatus(WorkRequest.StatusEnum.Accepted);
+        model.getWorkQueue().getOderById(selectedRequest.getOrderRequest().getId()).setStatus(WorkRequest.StatusEnum.Accepted);
         enterprise.getWorkQueue().getWorkRequestList().remove(selectedRequest);
         this.driverAccount.getWorkQueue().getWorkRequestList().add(selectedRequest);
         DB4OUtil.getInstance().storeSystem(system);
@@ -593,9 +593,9 @@ public class DriverMainJPanel extends javax.swing.JPanel {
         selectedRequest.setStatus(WorkRequest.StatusEnum.AtWork);
         selectedRequest.getOrderRequest().setStatus(WorkRequest.StatusEnum.AtWork);
         system.getCustomerAccountByUsername(selectedRequest.getOrderRequest().getAccount().getUsername()).
-                getWorkQueue().getOderById(selectedRequest.getOrderRequest().getOrderID()).setStatus(WorkRequest.StatusEnum.AtWork);
+                getWorkQueue().getOderById(selectedRequest.getOrderRequest().getId()).setStatus(WorkRequest.StatusEnum.AtWork);
         system.getEnterpriseById(selectedRequest.getOrderRequest().getEnterprise().getId()).getWorkQueue().
-                getOderById(selectedRequest.getOrderRequest().getOrderID()).setStatus(WorkRequest.StatusEnum.AtWork);
+                getOderById(selectedRequest.getOrderRequest().getId()).setStatus(WorkRequest.StatusEnum.AtWork);
         DB4OUtil.getInstance().storeSystem(system);
         populateTableDriveRequest(getAllDriveRequest());
         populateDetails();
@@ -612,11 +612,11 @@ public class DriverMainJPanel extends javax.swing.JPanel {
         ReviewRequest rr = new ReviewRequest(selectedRequest.getEnterprise(), 
                 selectedRequest.getOrderRequest().getAccount());
         system.getCustomerAccountByUsername(selectedRequest.getOrderRequest().getAccount().getUsername()).
-                getWorkQueue().getOderById(selectedRequest.getOrderRequest().getOrderID()).setStatus(WorkRequest.StatusEnum.Finished);
+                getWorkQueue().getOderById(selectedRequest.getOrderRequest().getId()).setStatus(WorkRequest.StatusEnum.Finished);
         system.getEnterpriseById(selectedRequest.getOrderRequest().getEnterprise().getId()).getWorkQueue().
-                getOderById(selectedRequest.getOrderRequest().getOrderID()).setStatus(WorkRequest.StatusEnum.Finished);
+                getOderById(selectedRequest.getOrderRequest().getId()).setStatus(WorkRequest.StatusEnum.Finished);
         system.getCustomerAccountByUsername(selectedRequest.getOrderRequest().getAccount().getUsername()).
-                getWorkQueue().getOderById(selectedRequest.getOrderRequest().getOrderID()).setReview(rr);
+                getWorkQueue().getOderById(selectedRequest.getOrderRequest().getId()).setReview(rr);
         selectedRequest.getOrderRequest().setReview(rr);
         DB4OUtil.getInstance().storeSystem(system);
         populateTableDriveRequest(getAllDriveRequest());

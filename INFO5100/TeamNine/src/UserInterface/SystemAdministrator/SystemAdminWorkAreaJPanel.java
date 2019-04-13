@@ -396,7 +396,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         //        if (network == null || type == null) {
             //            JOptionPane.showMessageDialog(null, "Invalid Input!");
             return;
-        }
+        
 
         //        String name = nameJTextField.getText();
         //
@@ -415,7 +415,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void submitJButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButton2ActionPerformed
 
-        Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
+       // Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
 
         //        String username = usernameJTextField.getText();
         //        String password = String.valueOf(passwordJPasswordField.getPassword());

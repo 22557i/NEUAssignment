@@ -18,6 +18,7 @@ public class DriverAccount extends UserAccount{
     public DriverAccount(String username, String password, Role role, Driver driver) {
         super(username, password, role);
         this.driver = driver;
+        this.setRole(new Business.Role.Driver());
     }
     
     public Driver getDriver() {

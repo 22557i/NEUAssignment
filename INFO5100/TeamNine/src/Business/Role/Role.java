@@ -27,7 +27,7 @@ public abstract class Role {
         Customer("Customer"),
         Driver("Driver"),
         CarGoAgency("CarGo"),
-        PickUpAgnecy("PickUp"),
+        PickUpAgency("PickUp"),
         SystemManager("System Manager");
         
         private String value;
@@ -43,7 +43,7 @@ public abstract class Role {
             if (this.value.equals(CarGoAgency.getValue())) {
                 return Type.CarGo;
             }
-             if (this.value.equals(PickUpAgnecy.getValue())) {
+             if (this.value.equals(PickUpAgency.getValue())) {
                 return Type.PickUp;
             }
             if (this.value.equals(Driver.getValue())) {

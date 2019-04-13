@@ -27,14 +27,13 @@ public class Driver {
         
     }
     
-    public Driver(String username, String name, String address, String phone, String email, DriverLicense driverLicense, Car vehicle) {
+    public Driver(String username, String name, String phone, String email) {
         this.username = username;
         this.name = name;
-        this.address = address;
+      
         this.phone = phone;
         this.email = email;
-        this.driverLicense = driverLicense;
-        this.vehicle = vehicle;
+        
     }
 
     public String getUsername() {

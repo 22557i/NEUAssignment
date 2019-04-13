@@ -8,6 +8,7 @@ package UserInterface;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
+import Business.Role.PickUpManager;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import Interface.CustomerRole.CustomerMainJPanel;
@@ -43,8 +44,8 @@ public class MainJFrame extends javax.swing.JFrame {
             CardLayout layout = (CardLayout)this.container.getLayout();
             layout.next(container);
         }
-        if(userAccount.getRole().getRoleType().getValue().equalsIgnoreCase("PickUp")){
-            PickUpAgencyWorkAreaJPanel cp = new PickUpAgencyWorkAreaJPanel();
+        if(userAccount.getRole().getRoleType().getValue().equalsIgnoreCase("PickUpAgency")){
+            PickUpAgencyWorkAreaJPanel cp = new PickUpAgencyWorkAreaJPanel(system, container, net, en, userAccount, this, new PickUpManager());
             container.add(cp);
             CardLayout layout = (CardLayout)this.container.getLayout();
             layout.next(container);

@@ -6,7 +6,7 @@
 package UserInterface;
 
 import Business.EcoSystem;
-import Interface.CustomerRole.CustomerRegistrationInfoJPanel;
+import Interface.CustomerRole.CustomerAccountInfoJPanel;
 import java.awt.CardLayout;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -167,7 +167,7 @@ private EcoSystem system;
         if (system.isUserNameAvaliable(username)) {
             if (password1.equals(password2)) {
                 this.frame.setSize(500, 430);
-                CustomerRegistrationInfoJPanel cp = new CustomerRegistrationInfoJPanel(this.system, this.leftPanel, this.frame, username, password1);
+                CustomerAccountInfoJPanel cp = new CustomerAccountInfoJPanel();
                 this.leftPanel.add("CustomerRegistrationInfoJPanel", cp);
                 CardLayout layout = (CardLayout) this.leftPanel.getLayout();
                 leftPanel.remove(this);

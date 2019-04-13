@@ -11,7 +11,9 @@ import Business.Organization.CarGoOrganization;
 import Business.Role.BossRole;
 import Business.Role.Driver;
 import Business.Role.ManagerRole;
+import Business.Role.PickUpManager;
 import Business.Role.SystemManagerRole;
+import Business.UserAccount.DriverAccount;
 import Business.UserAccount.UserAccount;
 
 /**
@@ -39,7 +41,9 @@ public class ConfigureASystem {
         network2.setId("New York City");
         Network network3 = system.createNetwork("Los Angeles");
         network3.setId("Los Angeles");
-        
+        system.getNetworkList().add(network3);
+        system.getNetworkList().add(network2);
+        system.getNetworkList().add(network1);
         CarGoAgency enter1 = network1.createCarGoAgency("Boston CarGo Agency", "1 Pleasant Street, Boston, MA 02125", "(617) 553-5900");
         enter1.setDescription("This is a CarGo Agency.");
         enter1.setId("Delivery");
@@ -56,7 +60,8 @@ public class ConfigureASystem {
         PickUpOrganization mo1 = (PickUpOrganization) enter1.getOrganizationDirectory().getTypicalOrganization(Organization.Type.PickUp);
         CarGoOrganization do1 = (CarGoOrganization) enter1.getOrganizationDirectory().getTypicalOrganization(Organization.Type.CarGo);
         Employee employee2 = mo1.getEmployeeDirectory().createEmployee("Manager", "Manager", "111", "manager@demo.com");
-        UserAccount ua12 = mo1.getUserAccountDirectory().createEmployeeAccount("m", "m", new ManagerRole(), employee2);
+        UserAccount ua12 = mo1.getUserAccountDirectory().createEmployeeAccount("m", "m", new PickUpManager(), employee2);
+        System.out.println(ua12.getRole().getRoleType().getValue());
 
         Employee employee3 = mo1.getEmployeeDirectory().createEmployee("Driver", "Man", "1111", "Driver1@demo.com");
         UserAccount ua13 = mo1.getUserAccountDirectory().createEmployeeAccount("d", "d", new Driver(), employee3);
@@ -64,15 +69,29 @@ public class ConfigureASystem {
         Employee employee4 = mo1.getEmployeeDirectory().createEmployee("Driver", "Man", "1111", "Driver2@demo.com");
         UserAccount ua14 = mo1.getUserAccountDirectory().createEmployeeAccount("dd", "dd", new Driver(), employee4);
         //CarGo organization
-       Employee employee5 = do1.getEmployeeDirectory().createEmployee("Manager", "Manager", "111", "manager@demo.com");
-        UserAccount ua22 = do1.getUserAccountDirectory().createEmployeeAccount("m", "m", new ManagerRole(), employee2);
+        Employee employee5 = do1.getEmployeeDirectory().createEmployee("Manager", "Manager", "111", "manager@demo.com");
+        UserAccount ua22 = do1.getUserAccountDirectory().createEmployeeAccount("ma", "ma", new ManagerRole(), employee2);
 
-        Employee employee6 = do1.getEmployeeDirectory().createEmployee("Driver", "Man", "1111", "Driver1@demo.com");
-        UserAccount ua23 = do1.getUserAccountDirectory().createEmployeeAccount("d", "d", new Driver(), employee3);
+        Business.Driver.Driver employee6 = new Business.Driver.Driver("Driver", "Man", "1111", "Driver1@demo.com");
+        DriverAccount ua23 = do1.getUserAccountDirectory().createDriverAccount("driver1", "driver1", employee6);
 
-        Employee employee7 = do1.getEmployeeDirectory().createEmployee("Driver", "Man", "1111", "Driver2@demo.com");
-        UserAccount ua24 = do1.getUserAccountDirectory().createEmployeeAccount("dd", "dd", new Driver(), employee4);
+        Business.Driver.Driver employee7 = new Business.Driver.Driver("Driver", "Dsds", "1111", "Driver2@demo.com");
+        DriverAccount ua24 = do1.getUserAccountDirectory().createDriverAccount("ddaa", "ddaa", employee7);
         
+        Employee employee44 = mo1.getEmployeeDirectory().createEmployee("PickUp", "Manager", "1111", "Pickup@demo.com");
+        UserAccount ua44 = mo1.getUserAccountDirectory().createEmployeeAccount("pickup", "pickup", new PickUpManager(), employee44);
+        //CarGo organization
+        Employee employee45 = do1.getEmployeeDirectory().createEmployee("cargo", "Manager", "111", "CarGo@demo.com");
+        UserAccount ua45 = do1.getUserAccountDirectory().createEmployeeAccount("cargo", "cargo", new ManagerRole(), employee45);
+        
+        
+        
+        system.getUserAccountDirectory().getUserAccountList().add(ua14);
+        system.getUserAccountDirectory().getUserAccountList().add(ua22);
+        system.getUserAccountDirectory().getUserAccountList().add(ua23);
+        system.getUserAccountDirectory().getUserAccountList().add(ua24);
+        system.getUserAccountDirectory().getUserAccountList().add(ua44);
+        system.getUserAccountDirectory().getUserAccountList().add(ua45);
         /*
         //Create a network
         //create an enterprise

@@ -380,7 +380,7 @@ public class EnterpriseAdminWorkAreaJPanel extends javax.swing.JPanel {
         //        if (network == null || type == null) {
             //            JOptionPane.showMessageDialog(null, "Invalid Input!");
             return;
-        }
+        
 
         //        String name = nameJTextField.getText();
         //
@@ -392,21 +392,21 @@ public class EnterpriseAdminWorkAreaJPanel extends javax.swing.JPanel {
     private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
         //        int index = jTabbedPane1.getSelectedIndex();
         //        if (index != 0 && index != -1) {
-            //            setProfileInfo();
-            //        }
+        //            setProfileInfo();
+        //        }
         //        setProfileFieldsEditable(false);
         //        resetPasswordField();
     }//GEN-LAST:event_jTabbedPane1StateChanged
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
 
-        Type type = (Type) organizationJComboBox.getSelectedItem();
+//        Type type = (Type) organizationJComboBox.getSelectedItem();
 //        directory.createOrganization(type);
 //        populateTable();
     }//GEN-LAST:event_addJButtonActionPerformed
 
     private void organizationJComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationJComboBox1ActionPerformed
-        Organization organization = (Organization) organizationJComboBox.getSelectedItem();
+//        Organization organization = (Organization) organizationJComboBox.getSelectedItem();
 //        if (organization != null){
 //            populateEmployeeComboBox(organization);
 //            populateRoleComboBox(organization);

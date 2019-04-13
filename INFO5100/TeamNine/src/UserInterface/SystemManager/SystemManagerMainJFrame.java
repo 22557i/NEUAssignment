@@ -12,7 +12,6 @@ import Business.Role.SystemManagerRole;
 import Business.UserAccount.CustomerAccount;
 import Business.UserAccount.EmployeeAccount;
 import Business.UserAccount.UserAccount;
-import Interface.CustomerRole.CustomerProfileJPanel;
 import java.awt.CardLayout;
 
 /**

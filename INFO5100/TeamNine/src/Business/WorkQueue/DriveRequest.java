@@ -66,7 +66,7 @@ public class DriveRequest extends WorkRequest{
     }
     
     public String getOrderID() {
-        return this.orderRequest.getOrderID();
+        return this.orderRequest.getId();
     }
     
     

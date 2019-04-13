@@ -7,7 +7,6 @@ package Business.Role;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import static Business.Enterprise.ShopModel.ShopType.Store;
 import Business.Network.Network;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;

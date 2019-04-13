@@ -4,21 +4,22 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/Users/mr.wu/Desktop/TeamNine/src/UserInterface/MainJFrame.java</file>
-            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Interface/CustomerRole/PlaceOrderJPanel.java</file>
-            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Interface/CustomerRole/OrderDetail.java</file>
+            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Business/UserAccount/EmployeeAccount.java</file>
             <file>file:/Users/mr.wu/Desktop/TeamNine/src/Business/ConfigureASystem.java</file>
-            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Interface/CustomerRole/CustomerProfileJPanel.java</file>
-            <file>file:/Users/mr.wu/Desktop/TeamNine/src/UserInterface/SystemManager/CreateCustomerJFrame.java</file>
-            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Interface/CustomerRole/CustomerOrderHistoryJPanel.java</file>
-            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Interface/CustomerRole/ChooseAgency.java</file>
-            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Interface/DriverRole/DriverMainJPanel.java</file>
-            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Interface/CustomerRole/OrderConfirmationJPanel.java</file>
-            <file>file:/Users/mr.wu/Desktop/TeamNine/src/UserInterface/SystemAdministrator/SystemAdminJFrame.java</file>
-            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Interface/CustomerRole/CustomerRegistrationInfoJPanel.java</file>
+            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Business/Organization/Organization.java</file>
+            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Business/Role/CargoManager.java</file>
+            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Business/Role/Driver.java</file>
+            <file>file:/Users/mr.wu/Desktop/TeamNine/src/UserInterface/PickUpAgency/PickUpAgencyWorkAreaJPanel.java</file>
+            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Business/Role/ManagerRole.java</file>
+            <file>file:/Users/mr.wu/Desktop/TeamNine/src/UserInterface/LoginJPanel.java</file>
+            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Business/EcoSystem.java</file>
             <file>file:/Users/mr.wu/Desktop/TeamNine/src/Business/UserAccount/UserAccount.java</file>
-            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Interface/CustomerRole/CustomerMainJPanel.java</file>
-            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Interface/CustomerRole/CustomerPasswordJPanel.java</file>
+            <file>file:/Users/mr.wu/Desktop/TeamNine/src/UserInterface/LoginJFrame.java</file>
             <file>file:/Users/mr.wu/Desktop/TeamNine/src/UserInterface/CargoAgency/CargoAgencyWorkAreaJPanel.java</file>
+            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Business/Role/Role.java</file>
+            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Business/Role/PickUpManager.java</file>
+            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Business/Employee/Employee.java</file>
+            <file>file:/Users/mr.wu/Desktop/TeamNine/src/Business/UserAccount/UserAccountDir.java</file>
         </group>
     </open-files>
 </project-private>

@@ -29,15 +29,15 @@ public class OrderConfirmationJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         lblOrderID = new javax.swing.JLabel();
-        txtOrderID = new javax.swing.JTextField();
         lblOrderDate = new javax.swing.JLabel();
-        txtOrderDate = new javax.swing.JTextField();
         lblCustomerName = new javax.swing.JLabel();
-        txtCustomerName = new javax.swing.JTextField();
         lblPhone = new javax.swing.JLabel();
-        txtPhone = new javax.swing.JTextField();
         lblRemark = new javax.swing.JLabel();
-        txtRemark = new javax.swing.JTextField();
+        lblShowOrderID = new javax.swing.JLabel();
+        lblShowOrderDate = new javax.swing.JLabel();
+        lblShowCustomerName = new javax.swing.JLabel();
+        lblShowPhone = new javax.swing.JLabel();
+        lblShowRemark = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Order Submitted Successfully!");
@@ -57,6 +57,16 @@ public class OrderConfirmationJPanel extends javax.swing.JPanel {
         lblRemark.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblRemark.setText("Remark");
 
+        lblShowOrderID.setText("<Order ID>");
+
+        lblShowOrderDate.setText("<Order Date>");
+
+        lblShowCustomerName.setText("<Customer Name>");
+
+        lblShowPhone.setText("<Phone>");
+
+        lblShowRemark.setText("<Remark>");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -69,13 +79,20 @@ public class OrderConfirmationJPanel extends javax.swing.JPanel {
                     .addComponent(lblCustomerName)
                     .addComponent(lblPhone)
                     .addComponent(lblRemark))
-                .addGap(112, 112, 112)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtOrderID)
-                    .addComponent(txtOrderDate)
-                    .addComponent(txtCustomerName)
-                    .addComponent(txtPhone)
-                    .addComponent(txtRemark, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addComponent(lblShowOrderDate))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(102, 102, 102)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblShowCustomerName)
+                            .addComponent(lblShowOrderID)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(122, 122, 122)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblShowRemark)
+                            .addComponent(lblShowPhone))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(367, Short.MAX_VALUE)
@@ -87,27 +104,27 @@ public class OrderConfirmationJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(jLabel1)
-                .addGap(60, 60, 60)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(61, 61, 61)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblOrderID)
-                    .addComponent(txtOrderID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                    .addComponent(lblShowOrderID))
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblOrderDate)
-                    .addComponent(txtOrderDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
+                    .addComponent(lblShowOrderDate))
+                .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCustomerName)
-                    .addComponent(txtCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
+                    .addComponent(lblShowCustomerName))
+                .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPhone)
-                    .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
+                    .addComponent(lblShowPhone))
+                .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRemark)
-                    .addComponent(txtRemark, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(96, Short.MAX_VALUE))
+                    .addComponent(lblShowRemark))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -119,10 +136,10 @@ public class OrderConfirmationJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblOrderID;
     private javax.swing.JLabel lblPhone;
     private javax.swing.JLabel lblRemark;
-    private javax.swing.JTextField txtCustomerName;
-    private javax.swing.JTextField txtOrderDate;
-    private javax.swing.JTextField txtOrderID;
-    private javax.swing.JTextField txtPhone;
-    private javax.swing.JTextField txtRemark;
+    private javax.swing.JLabel lblShowCustomerName;
+    private javax.swing.JLabel lblShowOrderDate;
+    private javax.swing.JLabel lblShowOrderID;
+    private javax.swing.JLabel lblShowPhone;
+    private javax.swing.JLabel lblShowRemark;
     // End of variables declaration//GEN-END:variables
 }

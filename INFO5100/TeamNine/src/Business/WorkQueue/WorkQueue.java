@@ -25,7 +25,7 @@ public class WorkQueue {
     public OrderRequest getOderById(String id) {
         for (WorkRequest wr:this.workRequestList) {
             OrderRequest or = (OrderRequest)wr;
-            if(or.getOrderID().equals(id)) {
+            if(or.getId().equals(id)) {
                 return or;
             }
         }
