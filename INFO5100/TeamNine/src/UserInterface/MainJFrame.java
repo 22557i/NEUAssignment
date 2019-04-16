@@ -15,6 +15,7 @@ import Interface.CustomerRole.CustomerMainJPanel;
 import Interface.DriverRole.DriverMainJPanel;
 import UserInterface.CargoAgency.CargoAgencyWorkAreaJPanel;
 import UserInterface.PickUpAgency.PickUpAgencyWorkAreaJPanel;
+import UserInterface.SystemManager.SystemManagerMainJFrame;
 import java.awt.CardLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -38,28 +39,38 @@ public class MainJFrame extends javax.swing.JFrame {
             CardLayout layout = (CardLayout)this.container.getLayout();
             layout.next(container);
         }
-        if(userAccount.getRole().getRoleType().getValue().equalsIgnoreCase("CarGo")){
-            CargoAgencyWorkAreaJPanel cp = new CargoAgencyWorkAreaJPanel();
+        if(userAccount.getRole().getRoleType().getValue().toLowerCase().contains("cargo")){
+            CargoAgencyWorkAreaJPanel cp = new CargoAgencyWorkAreaJPanel(system,  container,  net, en,
+             userAccount,  this, userAccount.getRole());
             container.add(cp);
             CardLayout layout = (CardLayout)this.container.getLayout();
             layout.next(container);
         }
-        if(userAccount.getRole().getRoleType().getValue().equalsIgnoreCase("PickUpAgency")){
+        if(userAccount.getRole().getRoleType().getValue().contains("PickUp")){
             PickUpAgencyWorkAreaJPanel cp = new PickUpAgencyWorkAreaJPanel(system, container, net, en, userAccount, this, new PickUpManager());
             container.add(cp);
             CardLayout layout = (CardLayout)this.container.getLayout();
             layout.next(container);
         }
         if (userAccount.getRole().getRoleType().getValue().equalsIgnoreCase("Manager")) {
-            this.setSize(950, 650);            
+            this.setSize(950, 650); 
+            
+            PickUpAgencyWorkAreaJPanel cp = new PickUpAgencyWorkAreaJPanel(system, container, net, en, userAccount, this, new PickUpManager());
+            container.add(cp);
+            CardLayout layout = (CardLayout)this.container.getLayout();
+            layout.next(container);
+        }
+         if(userAccount.getRole().getRoleType().getValue().contains("Customer")){
+            CustomerMainJPanel cp = new CustomerMainJPanel(system,container, userAccount,this);
+            container.add(cp);
+            CardLayout layout = (CardLayout)this.container.getLayout();
+            layout.next(container);
         }
         
-//        if (userAccount.getRole().getRoleType().getValue().equalsIgnoreCase("System Manager")) {
-//            SystemManagerInfoJPanel cp = new SystemManagerInfoJPanel(system, userAccount);
-//            container.add(cp);
-//            CardLayout layout = (CardLayout)this.container.getLayout();
-//            layout.next(container);
-//        }
+        if (userAccount.getRole().getRoleType().getValue().equalsIgnoreCase("System Manager")) {
+            //SystemManagerMainJFrame cp = new SystemManagerMainJFrame(system, userAccount);
+            
+        }
 //        if (userAccount.getRole().getRoleType().getValue().equalsIgnoreCase("Restaurant")) {
 ////            this.setSize(950, 600);
 //            RestaurantMainJPanel cp = new RestaurantMainJPanel(system, container, net, en, userAccount, this, new RestaurantRole());

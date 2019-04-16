@@ -100,7 +100,7 @@ public class SystemManagerMainJPanel extends javax.swing.JPanel {
             CustomerAccount c = (CustomerAccount) u;
             Object row[] = new Object[5];
             row[0] = c;
-            row[1] = c.getCustomer().getFullName();
+            row[1] = c.getCustomer().getName();
             row[2] = c.getCustomer().getEmail();
             row[3] = c.getCustomer().getPhone();
            // row[4] = c.getTotalPurchased();

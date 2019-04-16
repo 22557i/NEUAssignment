@@ -1,6 +1,7 @@
 package Business.WorkQueue;
 
 
+import Business.Driver.Driver;
 import Business.Enterprise.Enterprise;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.OrderRequest;
@@ -23,11 +24,23 @@ public class DriveRequest extends WorkRequest{
     private Date acceptTime;
     private Date atWorkTime;
     private Date finishedTime;
+    private Driver driver;
     
-    public DriveRequest(Enterprise enterprise, UserAccount account, OrderRequest orderRequest) {
+    public DriveRequest(Enterprise enterprise, UserAccount account, OrderRequest orderRequest, Driver driver) {
         super(enterprise, account);
         this.orderRequest = orderRequest;
+        this.driver = driver;
     }
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(Driver driver) {
+        this.driver = driver;
+    }
+    
+    
 
     public StatusEnum getStatus() {
         return status;

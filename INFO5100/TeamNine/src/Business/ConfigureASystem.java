@@ -1,20 +1,27 @@
 package Business;
 
 import Business.Customer.Customer;
+import Business.Driver.Car;
 import Business.Employee.Employee;
 import Business.Enterprise.CarGoAgency;
+import Business.Enterprise.CargoDeliveryCompany.CargoDelivery;
+import Business.Enterprise.CargoDeliveryCompany.Service;
 import Business.Enterprise.PickUpAgency;
+import Business.Enterprise.PickupServiceCompany.*;
 import Business.Network.Network;
 import Business.Organization.PickUpOrganization;
 import Business.Organization.Organization;
 import Business.Organization.CarGoOrganization;
+import Business.Organization.ManagerOrganization;
 import Business.Role.BossRole;
+import Business.Role.CargoManager;
 import Business.Role.Driver;
 import Business.Role.ManagerRole;
 import Business.Role.PickUpManager;
 import Business.Role.SystemManagerRole;
 import Business.UserAccount.DriverAccount;
 import Business.UserAccount.UserAccount;
+import java.util.ArrayList;
 
 /**
  *
@@ -24,74 +31,130 @@ public class ConfigureASystem {
 
     public static EcoSystem configure() {
 
-        EcoSystem system = EcoSystem.getInstance();
-        Employee employee1 = system.getEmployeeDirectory().createEmployee("Ranran", "He", "212212", "ranran@demo.com");
+         EcoSystem system = EcoSystem.getInstance();
+        
+        // Create a system administrator UserAccount, belongs to SYSTEM
+        Employee employee1 = system.getEmployeeDirectory().createEmployee("Harold", "Wu", "212212", "TeamNine@demo.com");
         UserAccount ua1 = system.getUserAccountDirectory().createEmployeeAccount("sysadmin", "sysadmin", new SystemManagerRole(), employee1);
 
-        // Customer, belongs to SYSTEM
-        Customer c1 = system.getCustomers().createCustomer("2", "2", "he.ra@husky.neu.edu", "1231231234");
+        // Create Customer Account, belongs to SYSTEM
+        Customer c1 = system.getCustomers().createCustomer("2",  "DrWu@husky.neu.edu", "1231231234");
         UserAccount ua2 = system.getUserAccountDirectory().createCustomerAccount("2", "2", c1);
 
-        Customer c2 = system.getCustomers().createCustomer("1", "1", "he.ra@husky.neu.edu", "1231231234");
+        Customer c2 = system.getCustomers().createCustomer("1", "DrWu@husky.neu.edu", "1231231234");
         UserAccount ua3 = system.getUserAccountDirectory().createCustomerAccount("1", "1", c2);
         
+        //Create Driver Account, belongs to SYSTEM
+        Business.Driver.Driver d1 = system.getDrivers().createDriver("Driver1", "Driver1@demo.com", "1111");
+        Car car1 = new Car("economy for 4 people", "BC678","black","Honda");
+        d1.setVehicle(car1);
+        UserAccount uad1 = system.getUserAccountDirectory().createDriverAccount("d1", "d1", d1);
+        
+        Business.Driver.Driver d2 = system.getDrivers().createDriver("Driver2", "Driver2@demo.com", "1111");
+        Car car2 = new Car("9' cargo van", "BC278","white","U-Haul");
+        d1.setVehicle(car2);
+        UserAccount uad2 = system.getUserAccountDirectory().createDriverAccount("d2", "d2", d2);
+        
+        // Create Network, belongs to SYSTEM
         Network network1 = system.createNetwork("Boston");
         network1.setId("Boston");
+        network1.setCargodeliveryList(new ArrayList<>());
         Network network2 = system.createNetwork("New York City");
         network2.setId("New York City");
         Network network3 = system.createNetwork("Los Angeles");
         network3.setId("Los Angeles");
-        system.getNetworkList().add(network3);
-        system.getNetworkList().add(network2);
-        system.getNetworkList().add(network1);
-        CarGoAgency enter1 = network1.createCarGoAgency("Boston CarGo Agency", "1 Pleasant Street, Boston, MA 02125", "(617) 553-5900");
+        
+        //!#harold wu new add
+        //system.getNetworkList().add(network3);
+        //system.getNetworkList().add(network2);
+        //system.getNetworkList().add(network1);
+        
+        //Boston Enterprise with organiztions created
+        
+        /*CargoAgency NO.1 in Bostong*/
+        CargoDelivery enter1 = network1.createCargoDelivery("Boston Cargo Agency", "1 Pleasant Street, Boston, MA 02125", "(617) 553-5900");
+        network2.createCargoDelivery("Boston Cargo Agency", "1 Pleasant Street, Boston, MA 02125", "(617) 553-5900");
+        network3.createCargoDelivery("Boston Cargo Agency", "1 Pleasant Street, Boston, MA 02125", "(617) 553-5900");
         enter1.setDescription("This is a CarGo Agency.");
-        enter1.setId("Delivery");
-        enter1.setPath("Images/DeliveryCompanyCut/default.png");
-        PickUpAgency enter2 = network1.createPickUpAgency("Boston PickUp Agency", "2 Pleasant Street, Boston, MA 02125", "(617) 123-3232");
-        Employee boss = enter1.getEmployeeDirectory().createEmployee("boss", "boss", "23323", "boss@com");
-        UserAccount bossA = enter1.getUserAccountDirectory().createEmployeeAccount("CarGo", "CarGo", new BossRole(), boss);
-     
-        Employee bossAA = enter2.getEmployeeDirectory().createEmployee("bossAA", "bossAA", "2332323", "boss@com");
-        UserAccount bossAAA = enter2.getUserAccountDirectory().createEmployeeAccount("PickUpAgency", "PickUpAgency", new BossRole(), boss);
-        
-        // BOSTON  Company Organization
-        //PickUp organization
-        PickUpOrganization mo1 = (PickUpOrganization) enter1.getOrganizationDirectory().getTypicalOrganization(Organization.Type.PickUp);
-        CarGoOrganization do1 = (CarGoOrganization) enter1.getOrganizationDirectory().getTypicalOrganization(Organization.Type.CarGo);
-        Employee employee2 = mo1.getEmployeeDirectory().createEmployee("Manager", "Manager", "111", "manager@demo.com");
-        UserAccount ua12 = mo1.getUserAccountDirectory().createEmployeeAccount("m", "m", new PickUpManager(), employee2);
-        System.out.println(ua12.getRole().getRoleType().getValue());
+        enter1.setId("Cargo");
+        enter1.setPath("Images/DeliveryCompanyCut/default.png");//没用
+        Service service1 = new Service(enter1, "9' cargo van", 10.00);
+        Service service2 = new Service(enter1, "10' truck", 20.00);
+        Service service3 = new Service(enter1, "15' truck", 30.00);
+        enter1.addDashToMenu(service1);
+        enter1.addDashToMenu(service2);
+        enter1.addDashToMenu(service3);
+        //create organiztions 
+        //add boss role at CargoAgency 
+        Employee b1 = enter1.getEmployeeDirectory().createEmployee("Row34", "Boss", "12344", "boss@row34.com");
+        UserAccount ba1 = enter1.getUserAccountDirectory().createEmployeeAccount("row34", "row34", new BossRole(), b1);             
+        //add Manager role at CargoAgency 
+        ManagerOrganization mo2 = (ManagerOrganization) enter1.getOrganizationDirectory().getTypicalOrganization(Organization.Type.Manager);
+        Employee em1 = mo2.getEmployeeDirectory().createEmployee("Manager", "Manager", "111", "manager@demo.com");
+        UserAccount ua6 = mo2.getUserAccountDirectory().createEmployeeAccount("rm", "rm", new ManagerRole(), em1);
 
-        Employee employee3 = mo1.getEmployeeDirectory().createEmployee("Driver", "Man", "1111", "Driver1@demo.com");
-        UserAccount ua13 = mo1.getUserAccountDirectory().createEmployeeAccount("d", "d", new Driver(), employee3);
 
-        Employee employee4 = mo1.getEmployeeDirectory().createEmployee("Driver", "Man", "1111", "Driver2@demo.com");
-        UserAccount ua14 = mo1.getUserAccountDirectory().createEmployeeAccount("dd", "dd", new Driver(), employee4);
-        //CarGo organization
-        Employee employee5 = do1.getEmployeeDirectory().createEmployee("Manager", "Manager", "111", "manager@demo.com");
-        UserAccount ua22 = do1.getUserAccountDirectory().createEmployeeAccount("ma", "ma", new ManagerRole(), employee2);
+          /*CargoAgency NO.2 in Bostong*/
+        CargoDelivery enter2 = network1.createCargoDelivery("Star Cargo Delivery", "270 Northern Ave, Boston, MA 02210", "(617) 477-2900");
+        enter2.setDescription("Lightning Quick，Star Service.");
+        enter2.setId("Star Cargo");
+        enter2.setPath("Images/DeliveryCompanyCut/default.png");//没用
+        Service service21 = new Service(enter2, "17' truck", 50.00);
+        Service service22 = new Service(enter2, "10' truck", 20.00);      
+        enter2.addDashToMenu(service21);
+        enter2.addDashToMenu(service22);  
+        //create organiztions 
+        //add boss role at CargoAgency 
+        Employee b2 = enter2.getEmployeeDirectory().createEmployee("Legal", "Boss", "222", "boss@demo.com");
+        UserAccount ba2 = enter2.getUserAccountDirectory().createEmployeeAccount("legal", "legal", new BossRole(), b2);             
+        //add Manager role at CargoAgency 
+        ManagerOrganization mo3 = (ManagerOrganization) enter2.getOrganizationDirectory().getTypicalOrganization(Organization.Type.Manager);
+        Employee em2 = mo3.getEmployeeDirectory().createEmployee("Manager", "Manager", "222", "manager@demo.com");
+        UserAccount ua7 = mo3.getUserAccountDirectory().createEmployeeAccount("lm", "lm", new ManagerRole(), em2);
 
-        Business.Driver.Driver employee6 = new Business.Driver.Driver("Driver", "Man", "1111", "Driver1@demo.com");
-        DriverAccount ua23 = do1.getUserAccountDirectory().createDriverAccount("driver1", "driver1", employee6);
-
-        Business.Driver.Driver employee7 = new Business.Driver.Driver("Driver", "Dsds", "1111", "Driver2@demo.com");
-        DriverAccount ua24 = do1.getUserAccountDirectory().createDriverAccount("ddaa", "ddaa", employee7);
+               
+        /*PickUpAgency NO.1 in Bostong*/
+        PickupService enter3 = network1.createPickupService("Boston PickUp Agency", "2 Pleasant Street, Boston, MA 02125", "(617) 123-3232");
+        enter3.setDescription("ALL YOU WANT IS HERE ");
+        enter3.setId("PickUp");
+        enter3.setPath("Images/StoreCut/default.png");               
+        CarLevel p1 = new CarLevel(enter3, "Enconomy", 4.2);//sedan for 4 people
+        CarLevel p2 = new CarLevel(enter3, "Extra Seats", 20.5);//XL for 6 people
+        CarLevel p3 = new CarLevel(enter3, "Luxury", 23.2);//Lux for 4 people
+        enter3.addProductToList(p1);
+        enter3.addProductToList(p2);
+        enter3.addProductToList(p3);
+        //create organiztions 
+        //add boss role at PickUpAgency         
+        Employee se1 = enter3.getEmployeeDirectory().createEmployee("Whole", "Foods", "222", "boss@demo.com");
+        UserAccount sa1 = enter3.getUserAccountDirectory().createEmployeeAccount("whole", "whole", new BossRole(), se1);
+        //add Manager role at PickUpAgency 
+        ManagerOrganization mo4 = (ManagerOrganization) enter3.getOrganizationDirectory().getTypicalOrganization(Organization.Type.Manager);
+        Employee se2 = mo4.getEmployeeDirectory().createEmployee("Manager", "Manager", "222", "manager@demo.com");
+        UserAccount sa2 = mo4.getUserAccountDirectory().createEmployeeAccount("wm", "wm", new ManagerRole(), em2);
         
-        Employee employee44 = mo1.getEmployeeDirectory().createEmployee("PickUp", "Manager", "1111", "Pickup@demo.com");
-        UserAccount ua44 = mo1.getUserAccountDirectory().createEmployeeAccount("pickup", "pickup", new PickUpManager(), employee44);
-        //CarGo organization
-        Employee employee45 = do1.getEmployeeDirectory().createEmployee("cargo", "Manager", "111", "CarGo@demo.com");
-        UserAccount ua45 = do1.getUserAccountDirectory().createEmployeeAccount("cargo", "cargo", new ManagerRole(), employee45);
         
+        /*New York City CargoDelivery List*/
+        CargoDelivery res = network2.createCargoDelivery("Home grown GA CargoDelivery", "968 Memorial Dr SE, Atlanta, GA 30316", "(404) 222-0455");
+        res.setDescription("Laid-back eatery serving locally sourced breakfast & Southern fare in a retro country-diner setting.");
+        res.setId("home");
+        res.setPath("Images/CargoDeliveryCut/default.png");        
+        Service da1 = new Service(res, "9' cargo van", 10);
+        Service da2 = new Service(res, "10' truck", 14);
+        Service da3 = new Service(res, "17' truc", 30.99);
+        res.addDashToMenu(da1);
+        res.addDashToMenu(da2);
+        res.addDashToMenu(da3);
+        //create organiztions 
+        //add boss role at CargoAgency in New York
+        Employee he = res.getEmployeeDirectory().createEmployee("Home Grown", "Boss", "222", "boss@demo.com");
+        UserAccount hee = res.getUserAccountDirectory().createEmployeeAccount("home", "home", new BossRole(), he);
+        //add Manager role at CargoAgency in New York
+        ManagerOrganization hmo3 = (ManagerOrganization) res.getOrganizationDirectory().getTypicalOrganization(Organization.Type.Manager);
+        Employee hem2 = hmo3.getEmployeeDirectory().createEmployee("Manager", "Manager", "222", "manager@demo.com");
+        UserAccount hua7 = hmo3.getUserAccountDirectory().createEmployeeAccount("hm", "hm", new ManagerRole(), hem2);
         
-        
-        system.getUserAccountDirectory().getUserAccountList().add(ua14);
-        system.getUserAccountDirectory().getUserAccountList().add(ua22);
-        system.getUserAccountDirectory().getUserAccountList().add(ua23);
-        system.getUserAccountDirectory().getUserAccountList().add(ua24);
-        system.getUserAccountDirectory().getUserAccountList().add(ua44);
-        system.getUserAccountDirectory().getUserAccountList().add(ua45);
+  
         /*
         //Create a network
         //create an enterprise

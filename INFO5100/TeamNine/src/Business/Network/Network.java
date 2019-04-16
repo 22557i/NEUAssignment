@@ -7,20 +7,26 @@ package Business.Network;
 
 
 import Business.Enterprise.CarGoAgency;
+import Business.Enterprise.CargoDeliveryCompany.CargoDelivery;
+import Business.Enterprise.PickUpAgency;
+import Business.Enterprise.PickupServiceCompany.PickupService;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.EnterpriseDir;
-import Business.Enterprise.PickUpAgency;
+
 import java.util.ArrayList;
 
 /**
  *
- * @author ranranhe
+ * @author 
  */
 public class Network {
 
     private String id;
     private EnterpriseDir enterpriseDir;
     private String city;
+    private ArrayList<CargoDelivery> cargodeliveryList;
+    private ArrayList<PickupService> pickupServicesList;
+    
     
     private static int counter = 0;
     
@@ -29,6 +35,24 @@ public class Network {
         this.city = city;
         this.id = "Network" + counter;
         counter++;
+        this.setCargodeliveryList( new ArrayList<CargoDelivery>());
+        this.setPickupServicesList(  new ArrayList<PickupService>());
+    }
+
+    public ArrayList<CargoDelivery> getCargodeliveryList() {
+        return cargodeliveryList;
+    }
+
+    public void setCargodeliveryList(ArrayList<CargoDelivery> cargodeliveryList) {
+        this.cargodeliveryList = cargodeliveryList;
+    }
+
+    public ArrayList<PickupService> getPickupServicesList() {
+        return pickupServicesList;
+    }
+
+    public void setPickupServicesList(ArrayList<PickupService> pickupServicesList) {
+        this.pickupServicesList = pickupServicesList;
     }
     
     public String getId(){
@@ -49,22 +73,24 @@ public class Network {
     
     public String getCity() {
         return this.city;
-    }
-
+    }   
     
-    public CarGoAgency createCarGoAgency(String name, String address, String phone) {
-        CarGoAgency enter = new CarGoAgency(name, address, phone);
+    public CargoDelivery createCargoDelivery(String name, String address, String phone) {
+        CargoDelivery enter = new CargoDelivery(name, address, phone);
         enter.createOrganizations();
-        this.enterpriseDir.getEnterpriseList().add(enter);
+        this.cargodeliveryList.add(enter);
         return enter;
     }
-    public PickUpAgency createPickUpAgency(String name, String address, String phone) {
-        PickUpAgency enter = new PickUpAgency(name, address, phone);
+    public PickupService createPickupService(String name, String address, String phone) {
+        PickupService enter = new PickupService(name, address, phone);
         enter.createOrganizations();
-        this.enterpriseDir.getEnterpriseList().add(enter);
+        this.pickupServicesList.add(enter);
         return enter;
-}
-}
+    }
+    @Override   
+    public String toString(){
+        return city;
+    }
     /*
     public Restaurant createRestaurant(String name, String address, String phone) {
         Restaurant res = new Restaurant(name, address, phone);
@@ -134,3 +160,4 @@ public class Network {
 //    }
 }
 */
+}

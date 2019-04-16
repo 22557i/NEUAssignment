@@ -10,7 +10,7 @@ import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.Item;
-import Business.Enterprise.PickupServiceCompany.Product;
+import Business.Enterprise.PickupServiceCompany.CarLevel;
 import Business.Enterprise.PickupServiceCompany.PickupService;
 import Business.Network.Network;
 import Business.Organization.Organization;
@@ -56,9 +56,9 @@ public class PickUpAgencyWorkAreaJPanel extends javax.swing.JPanel {
         this.employeeAccount = (EmployeeAccount) userAccount;
         this.frame = frame;
         this.accessRole = accessRole;
-        this.pickupService = (PickupService) en;
-        this.originPath = this.pickupService.getPath();
-        this.path = this.pickupService.getPath();
+       //this.pickupService = (PickupService) en;
+        //this.originPath = this.pickupService.getPath();
+        //this.path = this.pickupService.getPath();
         this.employee = this.employeeAccount.getEmployee();
     }
     public PickUpAgencyWorkAreaJPanel(){
@@ -67,7 +67,7 @@ public class PickUpAgencyWorkAreaJPanel extends javax.swing.JPanel {
     public void populateserviceTable() {
         DefaultTableModel dtm = (DefaultTableModel) serviceTable.getModel();
         dtm.setRowCount(0);
-        for (Product product : pickupService.getGoods()) {
+        for (CarLevel product : pickupService.getGoods()) {
             Object row[] = new Object[2];
             row[0] = product;
             row[1] = product.getPrice();

@@ -26,6 +26,12 @@ public class Driver {
     public Driver(){
         
     }
+    public Driver(String name, String phone, String email){
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        
+    }
     
     public Driver(String username, String name, String phone, String email) {
         this.username = username;

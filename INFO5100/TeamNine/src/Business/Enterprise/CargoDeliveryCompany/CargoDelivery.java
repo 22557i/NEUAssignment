@@ -25,11 +25,11 @@ import javax.imageio.ImageIO;
  */
 public class CargoDelivery extends ShopModel {
 
-    private int photoId;
-    
+    private int photoId;//没用    
     private String id;
     private static int counter = 0;
-    private String photoPath;
+    private String photoPath;//没用  
+    private double overallScore;//可能没用
 
     @Override
     public ShopType getType() {
@@ -41,6 +41,7 @@ public class CargoDelivery extends ShopModel {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    //#没用
     public enum RestaurantCategory {
 
         Seafood("Seafood"), Chinese("Chinese"),
@@ -66,10 +67,10 @@ public class CargoDelivery extends ShopModel {
     public CargoDelivery(String name, String address, String phone) {
         super(name, address, phone);
         this.photoId = counter;
-        this.id = "Restaurant" + counter;
+        this.id = "CargoDelivery" + counter;
         counter++;
         this.setType(ShopType.CargoDelivery);
-
+//photo的都没用，先别删
         String path = "Images/RestaurantCut/default.png";
         String fileName = "default.png";
 
@@ -86,7 +87,9 @@ public class CargoDelivery extends ShopModel {
         this.photoPath = path;
     }
 
-
+    public double getOverallScore() {
+        return overallScore;
+    }
 
     @Override
     public void setId(String id) {

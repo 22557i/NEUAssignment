@@ -14,18 +14,14 @@ import java.util.ArrayList;
  */
 public class Customer {
     private int id;
-    private String firstName;
-    private String lastName;
-    private String fullName;
+   private String name;
     private String address;
     private String phone;
     private String email;
     private static int count = 0;
 
-    public Customer(String firstName, String lastName, String email, String phone) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.fullName = firstName + " " + lastName;
+    public Customer(String name, String email, String phone) {
+        this.name = name;
         this.address = "";
         this.email = email;
         this.phone = phone;
@@ -37,52 +33,51 @@ public class Customer {
         return id;
     }
 
-    public void setName(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getFirstName() {
-        return this.firstName;
+    public String getName() {
+        return name;
     }
-    
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+
+    public void setName(String name) {
+        this.name = name;
     }
-    
-    public String getLastName() {
-        return this.lastName;
-    }
-    
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-            
-    public String getFullName() {
-        return this.firstName + " " + this.lastName;
-    }
-    
+
     public String getAddress() {
-        return this.address;
+        return address;
     }
-    
-    public void setAddress(String addr) {
-        this.address = addr;
+
+    public void setAddress(String address) {
+        this.address = address;
     }
-    
-    public String getEmail() {
-        return this.email;
-    }
-    
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    
+
     public String getPhone() {
-        return this.phone;
+        return phone;
     }
-    
+
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public static int getCount() {
+        return count;
+    }
+
+    public static void setCount(int count) {
+        Customer.count = count;
+    }
+
+   
+    
+
 }

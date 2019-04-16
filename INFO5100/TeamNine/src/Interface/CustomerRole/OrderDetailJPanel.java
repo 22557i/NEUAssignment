@@ -5,17 +5,114 @@
  */
 package Interface.CustomerRole;
 
+import Business.EcoSystem;
+import Business.Enterprise.CargoDeliveryCompany.CargoDelivery;
+import Business.Enterprise.PickupServiceCompany.PickupService;
+import Business.Enterprise.ShopModel;
+import static Business.Enterprise.ShopModel.ShopType.CargoDelivery;
+import static Business.Enterprise.ShopModel.ShopType.PickupService;
+import Business.Organization.Organization;
+import Business.UserAccount.CustomerAccount;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Hui Huang
  */
 public class OrderDetailJPanel extends javax.swing.JPanel {
 
+        private EcoSystem system;
+        private JPanel container;
+        private Organization organization;
+        private CustomerAccount account;
+        private JFrame frame;
     /**
      * Creates new form DriverNeedsJPanel
      */
-    public OrderDetailJPanel() {
+    public OrderDetailJPanel(EcoSystem system, JPanel container, CargoDelivery organization, ShopModel.ShopType type, CustomerAccount account, JFrame frame) {
         initComponents();
+        this.system = system;
+        this.container = container;
+        this.organization = organization;
+        this.account = account;
+        this.frame = frame;
+        
+//        lblCompany.setText(organization.getId());
+        
+        if (type == CargoDelivery){
+            //reference: https://www.uhaul.com/Truck-Rentals/
+            cbCarType.removeAllItems();
+            cbCarType.addItem("Cargo vans($20)");
+            cbCarType.addItem("10' truck($25)");
+            cbCarType.addItem("15' truck($30)");
+            cbCarType.addItem("20' truck($35)");
+            cbCarType.addItem("26' truck($40)");
+            
+            cbDistance.removeAllItems();
+            cbDistance.addItem("< 10 miles ($20)");
+            cbDistance.addItem("10 - 30 miles ($40)");
+            cbDistance.addItem("31 - 60 miles ($60)");
+            cbDistance.addItem("> 60 miles ($90)");
+        }
+            
+            
+        if (type == PickupService){
+            cbCarType.removeAllItems();
+            cbCarType.addItem("< 4 people($20)");
+            cbCarType.addItem("5 - 7 people($30)");
+            cbCarType.addItem("8 - 20 people($40)");
+            cbCarType.addItem("21 - 60 people($60)");
+            
+            cbDistance.removeAllItems();
+             cbDistance.addItem("< 10 miles ($20)");
+            cbDistance.addItem("10 - 30 miles ($40)");
+            cbDistance.addItem("31 - 60 miles ($60)");
+            cbDistance.addItem("> 60 miles ($90)");
+            
+        }
+    }
+ public OrderDetailJPanel(EcoSystem system, JPanel container, PickupService organization, ShopModel.ShopType type, CustomerAccount account, JFrame frame) {
+        initComponents();
+        this.system = system;
+        this.container = container;
+        this.organization = organization;
+        this.account = account;
+        this.frame = frame;
+        
+      //  lblCompany.setText(organization.getId());
+        
+        if (type == CargoDelivery){
+            //reference: https://www.uhaul.com/Truck-Rentals/
+            cbCarType.removeAllItems();
+            cbCarType.addItem("Cargo vans($20)");
+            cbCarType.addItem("10' truck($25)");
+            cbCarType.addItem("15' truck($30)");
+            cbCarType.addItem("20' truck($35)");
+            cbCarType.addItem("26' truck($40)");
+            
+            cbDistance.removeAllItems();
+            cbDistance.addItem("< 10 miles ($20)");
+            cbDistance.addItem("10 - 30 miles ($40)");
+            cbDistance.addItem("31 - 60 miles ($60)");
+            cbDistance.addItem("> 60 miles ($90)");
+        }
+            
+            
+        if (type == PickupService){
+            cbCarType.removeAllItems();
+            cbCarType.addItem("< 4 people($20)");
+            cbCarType.addItem("5 - 7 people($30)");
+            cbCarType.addItem("8 - 20 people($40)");
+            cbCarType.addItem("21 - 60 people($60)");
+            
+            cbDistance.removeAllItems();
+             cbDistance.addItem("< 10 miles ($20)");
+            cbDistance.addItem("10 - 30 miles ($40)");
+            cbDistance.addItem("31 - 60 miles ($60)");
+            cbDistance.addItem("> 60 miles ($90)");
+            
+        }
     }
 
     /**
@@ -39,8 +136,8 @@ public class OrderDetailJPanel extends javax.swing.JPanel {
         txtLocation = new javax.swing.JTextField();
         lblDestination = new javax.swing.JLabel();
         txtDestination = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox();
-        jComboBox2 = new javax.swing.JComboBox();
+        cbCarType = new javax.swing.JComboBox();
+        cbDistance = new javax.swing.JComboBox();
         lblCompany = new javax.swing.JLabel();
         lblShowTotalPrice = new javax.swing.JLabel();
 
@@ -68,9 +165,9 @@ public class OrderDetailJPanel extends javax.swing.JPanel {
         lblDestination.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblDestination.setText("Destination");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbCarType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbDistance.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         lblCompany.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblCompany.setText("<Company Name>");
@@ -112,8 +209,8 @@ public class OrderDetailJPanel extends javax.swing.JPanel {
                             .addComponent(lblDestination))
                         .addGap(244, 244, 244)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbDistance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbCarType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtDestination, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblShowTotalPrice))))
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -128,11 +225,11 @@ public class OrderDetailJPanel extends javax.swing.JPanel {
                 .addGap(68, 68, 68)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCarType)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbCarType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDistance)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbDistance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTotalPrice)
@@ -181,8 +278,8 @@ public class OrderDetailJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnNext;
     private javax.swing.JLabel btnTime;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JComboBox cbCarType;
+    private javax.swing.JComboBox cbDistance;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCarType;
     private javax.swing.JLabel lblCompany;

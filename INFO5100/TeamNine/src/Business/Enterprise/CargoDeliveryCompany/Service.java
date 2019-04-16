@@ -11,6 +11,8 @@ import Business.Enterprise.Item;
  *
  * @author ranranhe
  */
+//service {"Next Day Air","2nd Day Air","Ground","Same-day Delivery","One-hour Delivery"}
+//car type {9' cargo van, 10' truck, 15' truck, 17' truck}
 public class Service extends Item {
 
     private CargoDelivery cargoDelivery;
@@ -26,24 +28,4 @@ public class Service extends Item {
         return this.cargoDelivery;
     }
 
-//    public String getName() {
-//        return this.name;
-//    }
-//    
-//    public void setName(String name) {
-//        this.name = name;
-//    }
-//
-//    public double getPrice() {
-//        return this.price;
-//    }
-//    
-//    public void setPrice(double price) {
-//        this.price = price;
-//    }
-//    
-//    @Override
-//    public String toString() {
-//        return this.name;
-//    }
 }

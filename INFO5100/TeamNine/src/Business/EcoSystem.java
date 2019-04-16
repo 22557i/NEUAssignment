@@ -6,6 +6,7 @@
 package Business;
 
 import Business.Customer.CustomerDir;
+import Business.Driver.DriverDirectory;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
@@ -24,6 +25,7 @@ public class EcoSystem extends Organization {
     private static EcoSystem business;
     private ArrayList<Network> networkList;
     private CustomerDir customers;
+    private DriverDirectory drivers;
 
     public static EcoSystem getInstance() {
         if (business == null) {
@@ -43,6 +45,15 @@ public class EcoSystem extends Organization {
         super(null);
         networkList = new ArrayList<>();
         customers = new CustomerDir();
+        drivers = new DriverDirectory();
+    }
+
+    public DriverDirectory getDrivers() {
+        return drivers;
+    }
+
+    public void setDrivers(DriverDirectory drivers) {
+        this.drivers = drivers;
     }
     
     public boolean isCityAvabliable(String city) {

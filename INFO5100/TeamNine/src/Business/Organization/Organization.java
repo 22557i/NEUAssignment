@@ -25,7 +25,8 @@ public abstract class Organization {
     private static int counter;
     
     public enum Type {
-
+        
+        Manager("Manager Organization"),
         CarGo("CarGo"),
         PickUp("PickUp"),
         Driver("Driver");

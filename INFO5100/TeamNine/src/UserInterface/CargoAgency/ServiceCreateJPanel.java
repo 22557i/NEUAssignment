@@ -9,8 +9,8 @@ import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Enterprise.CargoDeliveryCompany.CargoDelivery;
 import Business.Enterprise.CargoDeliveryCompany.Service;
+import Business.Enterprise.PickupServiceCompany.CarLevel;
 import Business.Enterprise.PickupServiceCompany.PickupService;
-import Business.Enterprise.PickupServiceCompany.Product;
 import Business.Enterprise.ShopModel;
 import Business.Enterprise.ShopModel.ShopType;
 import static Business.Enterprise.ShopModel.ShopType.CargoDelivery;
@@ -152,7 +152,7 @@ public class ServiceCreateJPanel extends javax.swing.JPanel {
             }
             if (shop.getType().equals(ShopType.PickupService)) {
                 PickupService store = (PickupService) shop;
-                Product pro = new Product(store, name, price);//pickupservice
+                CarLevel pro = new CarLevel(store, name, price);//pickupservice
                 store.addProductToList(pro);
                 DB4OUtil.getInstance().storeSystem(system);
                 PickUpAgencyWorkAreaJPanel p = (PickUpAgencyWorkAreaJPanel) panel;

@@ -26,11 +26,11 @@ import javax.imageio.ImageIO;
  */
 public class PickupService extends ShopModel {
 
-    private int photoId;
-    private StoreCategory category;
+    private int photoId;//没用
+    private StoreCategory category;//没用
     private String id;
     private static int counter = 0;
-    private String photoPath;
+    private String photoPath;//没用
 
     @Override
     public ShopType getType() {
@@ -44,9 +44,8 @@ public class PickupService extends ShopModel {
         }
         return "";
     }
-
+//没用
     public enum StoreCategory {
-
         Seafood, Chinese, Japanese, Korean, American, Mexicon, Organic
     }
 
@@ -56,7 +55,7 @@ public class PickupService extends ShopModel {
         this.id = "Store" + counter;
         counter++;
         this.setType(ShopModel.ShopType.PickupService);
-
+//没用
         String path = "Images/StoreCut/default.png";
         String fileName = "default.png";
 
@@ -90,16 +89,16 @@ public class PickupService extends ShopModel {
         this.category = cat;
     }
 
-    public ArrayList<Product> getGoods() {
-        ArrayList<Product> result = new ArrayList<>();
+    public ArrayList<CarLevel> getGoods() {
+        ArrayList<CarLevel> result = new ArrayList<>();
         for (Item item : this.getItems()) {
-            Product product = (Product) item;
+            CarLevel product = (CarLevel) item;
             result.add(product);
         }
         return result;
     }
 
-    public void addProductToList(Product pro) {
+    public void addProductToList(CarLevel pro) {
         this.getItems().add(pro);
     }
     
@@ -125,7 +124,7 @@ public class PickupService extends ShopModel {
         BigDecimal bd = new BigDecimal(totalRate/num);
         return bd.setScale(1, BigDecimal.ROUND_HALF_UP).doubleValue();
     }
-
+//没用
     public String getPath() {
         return this.photoPath;
     }

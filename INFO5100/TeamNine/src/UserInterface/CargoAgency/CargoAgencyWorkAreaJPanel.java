@@ -55,10 +55,10 @@ public class CargoAgencyWorkAreaJPanel extends javax.swing.JPanel {
         this.container = container;
         this.net = net;
         this.en = en;
-        this.employeeAccount = (EmployeeAccount) userAccount;
-        this.employee = this.employeeAccount.getEmployee();
-        this.cargoDelivery = (CargoDelivery) en;
-        this.accessRole = accessRole;
+        //this.employeeAccount = (EmployeeAccount) userAccount;
+        //this.employee = this.employeeAccount.getEmployee();
+        //this.cargoDelivery = (CargoDelivery) en;
+       // this.accessRole = accessRole;
         
         /*系统角色之间不同，显示不同的tab*/
         //

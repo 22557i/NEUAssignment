@@ -20,16 +20,16 @@ public class CustomerDir {
     public ArrayList<Customer> getCustomerList() {
         return customerList;
     }
-    public void addCustomer(String firstName, String lastName, String email, String phone, String address){
-        Customer customer = new Customer(firstName, lastName, email, phone);
-        customer.setName(firstName, lastName);
+    public void addCustomer(String name, String email, String phone, String address){
+        Customer customer = new Customer(name, email, phone);
+        customer.setName(name);
         customer.setEmail(email);
         customer.setPhone(phone);
         customer.setAddress(address);
         customerList.add(customer);
     }
-    public Customer createCustomer(String firstName, String lastName, String email, String phone) {
-        Customer customer = new Customer(firstName, lastName, email, phone);
+    public Customer createCustomer(String name, String email, String phone) {
+        Customer customer = new Customer(name, email, phone);
         this.customerList.add(customer);
         return customer;
     }

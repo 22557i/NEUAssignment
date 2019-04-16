@@ -1,5 +1,23 @@
 package Interface.CustomerRole;
 
+import Business.Customer.Customer;
+import Business.DB4OUtil.DB4OUtil;
+import Business.EcoSystem;
+import Business.Enterprise.ShopModel;
+import Business.Role.Role;
+import Business.UserAccount.CustomerAccount;
+import Business.WorkQueue.DriveRequest;
+import Business.WorkQueue.OrderRequest;
+import Business.WorkQueue.WorkRequest;
+import UserInterface.LoginJFrame;
+import UserInterface.SystemManager.SystemManagerMainJPanel;
+import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,11 +31,65 @@ package Interface.CustomerRole;
  */
 public class CustomerAccountInfoJPanel extends javax.swing.JPanel {
 
+    private EcoSystem system;
+    private JPanel container;
+    private CustomerAccount account;
+    private Customer customer;
+    private JFrame frame;
+    private Role accessRole;
     /**
      * Creates new form CustomerAccountInfoJPanel
      */
-    public CustomerAccountInfoJPanel() {
+    public CustomerAccountInfoJPanel(EcoSystem system, JPanel container, CustomerAccount account, JFrame frame, Role accessRole) {
         initComponents();
+        this.system = system;
+        this.container = container;
+        this.account = account;
+        this.customer = account.getCustomer();
+        this.frame = frame;
+        this.accessRole = accessRole;
+        
+        setInfo();
+        populateTableOrderHistory();
+    }
+    public CustomerAccountInfoJPanel(){
+        
+    }
+    private void setInfo() {
+        lblCustomerName.setText(customer.getName());
+        txtName.setText(customer.getName());
+        txtUsername.setText(account.getUsername());
+        txtAddress.setText(customer.getAddress());
+        txtPhone.setText(customer.getPhone());
+        txtEmail.setText(customer.getEmail());
+    }
+    
+    public void populateTableOrderHistory() {
+        DefaultTableModel dtm = (DefaultTableModel) tableOrderHistory.getModel();
+        dtm.setRowCount(0);
+        for (WorkRequest wr : this.account.getWorkQueue().getWorkRequestList()) {
+            DriveRequest dr = (DriveRequest) wr;
+            Object row[] = new Object[6];
+            //Order ID
+            row[0] = dr.getOrderRequest().getId();
+            //Order Date
+            row[1] = dr.getOrderRequest();
+            //Order Status
+            row[2] = dr.getOrderRequest().getStatus();
+            //Company
+            row[3] = (ShopModel) dr.getOrderRequest().getEnterprise();
+            //Driver
+            row[4] = dr.getDriver().getName();
+            //Pay
+            row[5] = dr.getOrderRequest().getAmount();
+            dtm.addRow(row);
+        }
+    }
+    
+     private void resetPasswordField() {
+        pfCurrent.setText("");
+        pfNew.setText("");
+        pfConfirm.setText("");
     }
 
     /**
@@ -56,6 +128,7 @@ public class CustomerAccountInfoJPanel extends javax.swing.JPanel {
         tableOrderHistory = new javax.swing.JTable();
         btnLogout = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        lblCustomerName = new javax.swing.JLabel();
 
         jTabbedPane1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jTabbedPane1.setMaximumSize(new java.awt.Dimension(579, 324));
@@ -95,6 +168,11 @@ public class CustomerAccountInfoJPanel extends javax.swing.JPanel {
 
         btnSaveProfile.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnSaveProfile.setText("Save");
+        btnSaveProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveProfileActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -162,6 +240,11 @@ public class CustomerAccountInfoJPanel extends javax.swing.JPanel {
 
         btnSavePassword.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnSavePassword.setText("Save");
+        btnSavePassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSavePasswordActionPerformed(evt);
+            }
+        });
 
         pfCurrent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,17 +297,17 @@ public class CustomerAccountInfoJPanel extends javax.swing.JPanel {
 
         tableOrderHistory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Order ID", "Order Date", "Order Status", "Company", "Driver"
+                "Order ID", "Order Date", "Order Status", "Company", "Driver", "Pay"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -271,9 +354,22 @@ public class CustomerAccountInfoJPanel extends javax.swing.JPanel {
 
         btnLogout.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnLogout.setText("Log out");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
 
         btnBack.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnBack.setText("<< Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
+        lblCustomerName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblCustomerName.setText("<Customer Name>");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -286,6 +382,8 @@ public class CustomerAccountInfoJPanel extends javax.swing.JPanel {
                 .addGap(82, 82, 82)
                 .addComponent(btnBack)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblCustomerName)
+                .addGap(277, 277, 277)
                 .addComponent(btnLogout)
                 .addGap(81, 81, 81))
         );
@@ -293,13 +391,11 @@ public class CustomerAccountInfoJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 32, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnLogout)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnBack)
-                        .addGap(19, 19, 19)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBack)
+                    .addComponent(lblCustomerName)
+                    .addComponent(btnLogout))
+                .addGap(19, 19, 19)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -329,6 +425,70 @@ public class CustomerAccountInfoJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_pfCurrentActionPerformed
 
+    private void btnSaveProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveProfileActionPerformed
+        // TODO add your handling code here:
+        if ( !txtName.getText().equals("") && !txtAddress.getText().equals("")
+                && !txtPhone.getText().equals("") && !txtEmail.getText().equals("")) {
+            customer.setName(txtName.getText());
+            customer.setEmail(txtEmail.getText());
+            customer.setAddress(txtAddress.getText());
+            customer.setPhone(txtPhone.getText());
+        } else {
+            JOptionPane.showMessageDialog(null, "Information can't be empty");
+            return;
+        }
+        
+
+        DB4OUtil.getInstance().storeSystem(system);
+        // ????
+        if (accessRole.getRoleType().equals(Role.RoleType.SystemManager)) {
+            SystemManagerMainJPanel sp = (SystemManagerMainJPanel) container;
+            sp.populateTable(system.getUserAccountDirectory().getUserAccountList());
+        }
+    }//GEN-LAST:event_btnSaveProfileActionPerformed
+
+    private void btnSavePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSavePasswordActionPerformed
+        // TODO add your handling code here:
+         char[] currentCharArray = pfCurrent.getPassword();
+        String currentPassword = String.valueOf(currentCharArray);
+        char[] newCharArray = pfNew.getPassword();
+        String newPassword = String.valueOf(newCharArray);
+        char[] confirmCharArray = pfConfirm.getPassword();
+        String confirmPassword = String.valueOf(confirmCharArray);
+
+        if (currentPassword.equals(account.getPassword())) {
+            if (!newPassword.equals("")) {
+                if (newPassword.equals(confirmPassword)) {
+                    account.setPassword(newPassword);
+                    JOptionPane.showMessageDialog(null, "Password updated successfully!");
+                    DB4OUtil.getInstance().storeSystem(system);
+                    resetPasswordField();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Passwords don't match!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Password can't be empty!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Password is not correct!");
+        }
+    }//GEN-LAST:event_btnSavePasswordActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        this.container.remove(this);
+        CardLayout layout = (CardLayout) this.container.getLayout();
+        layout.previous(this.container);
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        // TODO add your handling code here:
+        LoginJFrame lf = new LoginJFrame();
+        this.frame.dispose();;
+        lf.setLocationRelativeTo(null);
+        lf.setVisible(true);
+    }//GEN-LAST:event_btnLogoutActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
@@ -345,6 +505,7 @@ public class CustomerAccountInfoJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblAddress;
+    private javax.swing.JLabel lblCustomerName;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblPhone;

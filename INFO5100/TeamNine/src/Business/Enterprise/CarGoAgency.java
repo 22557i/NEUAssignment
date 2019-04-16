@@ -28,6 +28,7 @@ public class CarGoAgency extends Enterprise {
     private String photoPath;
     private String description;
     private String id;
+    private double overallScore;
     
     public CarGoAgency(String name,String address, String phone) {
         super(name);
@@ -52,6 +53,12 @@ public class CarGoAgency extends Enterprise {
         }
         this.photoPath = path;
     }
+
+    public double getOverallScore() {
+        return overallScore;
+    }
+    
+    
     
     public int getPhotoId() {
         return this.photoId;

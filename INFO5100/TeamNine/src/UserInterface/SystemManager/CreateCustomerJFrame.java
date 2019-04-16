@@ -235,7 +235,7 @@ public class CreateCustomerJFrame extends javax.swing.JFrame {
                 return;
             }
             if (password1.equals(password2)) {
-                Customer customer = new Customer(firstNameTextField.getText(), lastNameTextField.getText(),
+                Customer customer = new Customer(firstNameTextField.getText(),
                         phoneTextField.getText(), emailTextField.getText());
                 UserAccount ua = system.getUserAccountDirectory().createCustomerAccount(username, password1, customer);
                 

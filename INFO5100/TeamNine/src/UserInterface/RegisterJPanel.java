@@ -5,8 +5,14 @@
  */
 package UserInterface;
 
+import Business.Customer.Customer;
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
+import Business.Role.CustomerRole;
+import Business.UserAccount.CustomerAccount;
+import Business.UserAccount.UserAccount;
 import Interface.CustomerRole.CustomerAccountInfoJPanel;
+import Interface.CustomerRole.CustomerMainJPanel;
 import java.awt.CardLayout;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -167,7 +173,8 @@ private EcoSystem system;
         if (system.isUserNameAvaliable(username)) {
             if (password1.equals(password2)) {
                 this.frame.setSize(500, 430);
-                CustomerAccountInfoJPanel cp = new CustomerAccountInfoJPanel();
+                CustomerAccount a =new CustomerAccount(username, password2, new Customer(username, "123123", "123@husky.neu.edu"));
+                CustomerMainJPanel cp = new CustomerMainJPanel(system,leftPanel, a,frame );
                 this.leftPanel.add("CustomerRegistrationInfoJPanel", cp);
                 CardLayout layout = (CardLayout) this.leftPanel.getLayout();
                 leftPanel.remove(this);
@@ -178,6 +185,7 @@ private EcoSystem system;
         } else {
             JOptionPane.showMessageDialog(null, "Username already exists!");
         }
+        DB4OUtil.getInstance().storeSystem(system);
     }//GEN-LAST:event_registerJButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed

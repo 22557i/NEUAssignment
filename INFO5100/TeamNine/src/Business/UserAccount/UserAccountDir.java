@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author ranranhe
+ * @author 
  */
 public class UserAccountDir {
 
@@ -89,7 +89,7 @@ public class UserAccountDir {
                             result.add(c);
                         }
                     }
-                    if (c.getCustomer().getFullName().toLowerCase().contains(key.toLowerCase())) {
+                    if (c.getCustomer().getName().toLowerCase().contains(key.toLowerCase())) {
                         if(!result.contains(c)) {
                             result.add(c);
                         }
