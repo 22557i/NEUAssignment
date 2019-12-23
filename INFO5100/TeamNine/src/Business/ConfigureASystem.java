@@ -36,11 +36,11 @@ public class ConfigureASystem {
         // Create a system administrator UserAccount, belongs to SYSTEM
         Employee employee1 = system.getEmployeeDirectory().createEmployee("Harold", "Wu", "212212", "TeamNine@demo.com");
         UserAccount ua1 = system.getUserAccountDirectory().createEmployeeAccount("sysadmin", "sysadmin", new SystemManagerRole(), employee1);
-
+        
         // Create Customer Account, belongs to SYSTEM
         Customer c1 = system.getCustomers().createCustomer("2",  "DrWu@husky.neu.edu", "1231231234");
         UserAccount ua2 = system.getUserAccountDirectory().createCustomerAccount("2", "2", c1);
-
+        
         Customer c2 = system.getCustomers().createCustomer("1", "DrWu@husky.neu.edu", "1231231234");
         UserAccount ua3 = system.getUserAccountDirectory().createCustomerAccount("1", "1", c2);
         
